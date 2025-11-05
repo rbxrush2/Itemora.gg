@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Itemora - Game Item Marketplace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #061826, #0a1929);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      background: rgba(10, 25, 41, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00bcd4;
+      text-shadow: 0 0 10px #00bcd4;
+      cursor: pointer;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00eaff;
+      text-shadow: 0 0 8px #00eaff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 120px 20px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00bcd4;
+    }
+
+    .hero p {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #b3e5fc;
+    }
+
+    .hero button {
+      margin-top: 40px;
+      padding: 15px 40px;
+      background: linear-gradient(90deg, #00bcd4, #0097a7);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    .items {
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .item {
+      background: #0d2336;
+      border-radius: 15px;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00bcd4;
+    }
+
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .item h3 {
+      margin: 15px 0 5px;
+      color: #00eaff;
+    }
+
+    .item p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .item button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: #00bcd4;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .item button:hover {
+      background: #00eaff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #061826;
+      color: #888;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Itemora</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to Itemora</h1>
+    <p>Your trusted marketplace for in-game items and digital treasures.</p>
+    <button>Explore Shop</button>
+  </section>
+
+  <section class="items" id="shop">
+    <div class="item">
+      <img src="https://via.placeholder.com/300x200.png?text=Item+1" alt="Item 1" />
+      <h3>Epic Sword</h3>
+      <p>Powerful blade with unmatched sharpness.</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/300x200.png?text=Item+2" alt="Item 2" />
+      <h3>Golden Armor</h3>
+      <p>Legendary protection for elite players.</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="item">
+      <img src="https://via.placeholder.com/300x200.png?text=Item+3" alt="Item 3" />
+      <h3>Magic Potion</h3>
+      <p>Instant boost to your game energy.</p>
+      <button>Buy Now</button>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Itemora. All rights reserved.
+  </footer>
+</body>
+</html>
