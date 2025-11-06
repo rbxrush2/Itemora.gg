@@ -9,8 +9,8 @@
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
     body{background:linear-gradient(135deg,#02101f,#062b48);color:#fff;overflow-x:hidden;}
     header{display:flex;justify-content:space-between;align-items:center;padding:20px 80px;background:rgba(10,25,41,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;}
-    .logo img{height:75px;filter:drop-shadow(0 0 15px #00eaff);transition:.3s;}
-    .logo img:hover{transform:scale(1.08);}
+    .logo img{height:75px;transition:.3s;}
+    .logo img:hover{transform:scale(1.08);filter:drop-shadow(0 0 15px #00eaff);}
     nav a{margin:0 15px;color:#ccc;text-decoration:none;transition:.3s;cursor:pointer;}
     nav a:hover{color:#00eaff;text-shadow:0 0 8px #00eaff;}
     .hero{text-align:center;padding:120px 20px;position:relative;}
@@ -22,9 +22,18 @@
     .scroll-btn button:hover{transform:scale(1.05);box-shadow:0 0 20px #00eaff;}
     .section{padding:80px 40px;min-height:100vh;}
     .discord-top{position:absolute;top:10px;width:100%;text-align:center;font-size:18px;color:#b3e5fc;}
-    .discord-top a{color:#00eaff;text-decoration:none;font-weight:700;}
+    .discord-top a{color:#00eaff;text-decoration:none;font-weight:700;transition:.3s;}
+    .discord-top a:hover{text-shadow:0 0 12px #00eaff;}
     .discord-top p{margin-top:5px;font-size:14px;color:#89ccff;}
     footer{text-align:center;padding:30px;background:#03111c;color:#888;font-size:14px;border-top:1px solid rgba(255,255,255,0.1);}  
+      .items{padding:40px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+    .item{background:#0d2336;border-radius:15px;text-align:center;padding:20px;transition:.3s}
+    .item:hover{transform:translateY(-8px);box-shadow:0 0 20px #00bcd4}
+    .item img{width:100%;border-radius:10px}
+    .item h3{margin:15px 0 5px;color:#00eaff}
+    .item p{color:#ccc;font-size:14px}
+    .item button{margin-top:15px;padding:10px 25px;background:#00bcd4;border:none;border-radius:20px;color:#fff;cursor:pointer;transition:.3s}
+    .item button:hover{background:#00eaff;box-shadow:0 0 15px #00eaff}
   </style>
 </head>
 <body>
@@ -93,8 +102,8 @@
   logoutBtn.onclick=()=>signOut(auth);
 
   onAuthStateChanged(auth,user=>{
-    if(user){userBox.innerHTML=`✅ Logged in as <b>${user.displayName}</b>`;loginBtn.style.display="none";logoutBtn.style.display="inline-block";}
-    else{userBox.innerHTML="❌ Not logged in";loginBtn.style.display="inline-block";logoutBtn.style.display="none";}
+    if(user){userBox.innerHTML=`Logged in as <b>${user.displayName}</b>`;loginBtn.style.display="none";logoutBtn.style.display="inline-block";}
+    else{userBox.innerHTML='';loginBtn.style.display="inline-block";logoutBtn.style.display="none";}
   });
 </script>
 
