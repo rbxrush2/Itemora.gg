@@ -189,5 +189,53 @@
   <footer>
     © 2025 Itemora. All rights reserved.
   </footer>
+
+<!-- Firebase Auth Setup -->
+<script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // TODO: 🔥 Replace with your Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Login Button
+  const loginBtn = document.getElementById("loginBtn");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", () => {
+      signInWithPopup(auth, provider).catch(err => console.error(err));
+    });
+  }
+
+  // Logout Button
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth);
+    });
+  }
+
+  // Auth State Change
+  onAuthStateChanged(auth, user => {
+    const userBox = document.getElementById("userBox");
+    if (user) {
+      userBox.innerHTML = `✅ Logged in as <b>${user.displayName}</b>`;
+    } else {
+      userBox.innerHTML = "❌ Not logged in";
+    }
+  });
+</script>
 </body>
 </html>
