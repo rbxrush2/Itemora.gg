@@ -1,118 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Itemora - Game Item Marketplace</title>
+<link rel="icon" type="image/png" href="logo.png"/>
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #001f31;
-    color: white;
-}
+  :root{
+    --bg1:#051b2b;
+    --bg2:#0a2a40;
+    --cyan:#00eaff;
+    --cyan-d:#00c6d9;
+    --text:#e8f7ff;
+    --muted:#a8d8ef;
+    --card:#0c2336;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text);
+    background:radial-gradient(1200px 600px at 50% -200px, #0d3e57 0%, transparent 60%), linear-gradient(180deg,var(--bg1),var(--bg2));
+    overflow-x:hidden;
+  }
 
-/* navbar */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-nav a {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-nav a:hover {
-    text-shadow: 0 0 10px cyan;
-}
+  /* Top Discord banner */
+  .discord-top{
+    position:fixed;
+    top:0; left:0; right:0;
+    text-align:center;
+    padding:6px 10px;
+    font-size:14px;
+    color:var(--muted);
+    z-index:30;
+    pointer-events:none;
+  }
+  .discord-top a{
+    pointer-events:auto;
+    color:var(--cyan);
+    text-decoration:none;
+    font-weight:700;
+    transition:filter .2s, text-shadow .2s;
+  }
+  .discord-top a:hover{ text-shadow:0 0 10px var(--cyan); filter:brightness(1.15); }
+  .discord-top small{ display:block; color:#89ccff; margin-top:2px; }
 
-/* hero */
-.hero {
-    text-align: center;
-    margin-top: 100px;
-}
-.hero h1 {
-    font-size: 40px;
-    color: cyan;
-    text-shadow: 0 0 15px cyan;
-}
-.hero button {
-    background: cyan;
-    border: none;
-    padding: 10px 25px;
-    font-size: 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.hero button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px cyan;
-}
+  /* Header */
+  header{
+    position:sticky; top:22px; /* sits just below the banner */
+    z-index:20;
+    padding:14px 28px;
+    display:flex; align-items:center; gap:18px;
+    background:rgba(8,25,40,.55);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{display:flex; align-items:center; gap:10px}
+  .logo img{
+    height:62px;
+    transition:transform .25s, filter .25s;
+    filter:drop-shadow(0 0 6px rgba(0,234,255,.35)); /* subtle by default */
+  }
+  .logo img:hover{
+    transform:scale(1.04);
+    filter:drop-shadow(0 0 10px rgba(0,234,255,.55));
+  }
 
-/* featured items */
-section {
-    text-align: center;
-    margin-top: 80px;
-}
-.item-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 70%;
-    margin: auto;
-    margin-top: 20px;
-}
-.item-card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 10px;
-}
-.item-card button {
-    background: cyan;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-}
+  nav{margin-left:auto; display:flex; align-items:center; gap:18px;}
+  nav a{
+    color:var(--text); text-decoration:none; font-weight:600; opacity:.9;
+    padding:6px 10px; border-radius:8px; transition:.2s;
+  }
+  nav a:hover{ color:var(--cyan); text-shadow:0 0 10px var(--cyan); }
+
+  .btn{
+    margin-left:10px;
+    background:var(--cyan);
+    color:#032432;
+    padding:9px 16px; border:none; border-radius:12px; font-weight:800; cursor:pointer;
+    transition:transform .15s, box-shadow .2s, filter .15s;
+  }
+  .btn:hover{ transform:translateY(-1px); box-shadow:0 0 18px rgba(0,234,255,.35); filter:brightness(1.05); }
+
+  /* Hero */
+  .hero{
+    padding:120px 16px 30px;
+    text-align:center;
+    max-width:1100px; margin:0 auto;
+  }
+  .hero h1{
+    margin:40px 0 10px;
+    font-size:48px; line-height:1.1; letter-spacing:.3px;
+    color:var(--cyan); text-shadow:0 0 18px var(--cyan);
+  }
+  .hero p{ color:var(--muted); margin:8px 0 20px; }
+  .hero .cta{
+    display:inline-block; margin-top:8px;
+    background:linear-gradient(90deg,var(--cyan),var(--cyan-d));
+    color:#032432; padding:12px 26px; border-radius:28px; font-weight:800; text-decoration:none;
+    transition:transform .15s, box-shadow .2s;
+  }
+  .hero .cta:hover{ transform:translateY(-1px); box-shadow:0 0 20px rgba(0,234,255,.35); }
+
+  /* Sections */
+  .section{ padding:40px 18px 90px; max-width:1200px; margin:0 auto; }
+  .section h2{ text-align:center; font-size:26px; margin:8px 0 22px; }
+
+  /* Featured Items grid */
+  .grid{
+    display:grid; gap:22px; grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .card{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px; padding:22px;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 30px rgba(0, 234, 255, .18);
+    border-color:rgba(0,234,255,.35);
+  }
+  .card h3{ margin:0 0 12px; }
+  .buy{
+    background:var(--cyan); color:#032432; font-weight:800;
+    border:none; padding:8px 16px; border-radius:999px; cursor:pointer;
+    transition:box-shadow .2s, transform .15s;
+  }
+  .buy:hover{ box-shadow:0 0 18px rgba(0,234,255,.35); transform:translateY(-1px); }
+
+  /* Contact */
+  #contact p{ text-align:center; color:var(--muted); }
+  #contact a{ color:var(--cyan); text-decoration:none; font-weight:700; }
+  #contact a:hover{ text-shadow:0 0 10px var(--cyan); }
+
+  /* Footer */
+  footer{ text-align:center; padding:22px; color:#8fbfd6; border-top:1px solid rgba(255,255,255,.06); background:#071c2b; }
+
+  /* Mobile */
+  @media (max-width:900px){
+    .hero h1{font-size:38px}
+    .grid{grid-template-columns:1fr}
+    .logo img{height:54px}
+    header{padding:12px 16px}
+  }
 </style>
 </head>
-
 <body>
 
-<nav>
-    <img src="logo.png" width="90">
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-    <button onclick="location.href='login.html'"
-        style="background:cyan;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;">
-        Sign In
-    </button>
-</nav>
-
-<div class="hero">
-    <h1>Welcome to Itemora</h1>
-    <p>Your trusted marketplace for in-game items.</p>
-    <button>Explore Shop</button>
+<!-- Top Discord strip -->
+<div class="discord-top">
+  <a href="https://discord.gg/MzJtd5eTdC" target="_blank" rel="noopener">Join our Discord Server</a>
+  <small>Giveaways everyday</small>
 </div>
 
-<section>
-    <h2>Featured Items</h2>
-    <div class="item-grid">
-        <div class="item-card"><h3>Epic Sword</h3><button>Buy</button></div>
-        <div class="item-card"><h3>Golden Armor</h3><button>Buy</button></div>
-        <div class="item-card"><h3>Magic Potion</h3><button>Buy</button></div>
-    </div>
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Itemora Logo">
+  </div>
+
+  <!-- Right-side nav like before -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#contact">Contact</a>
+    <button class="btn" onclick="location.href='login.html'">Sign In</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <h1>Welcome to Itemora</h1>
+  <p>Your trusted marketplace for in-game items.</p>
+  <a href="#shop" class="cta">Explore Shop</a>
 </section>
+
+<!-- FEATURED -->
+<section id="shop" class="section">
+  <h2>Featured Items</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>Epic Sword</h3>
+      <p>Powerful blade with unmatched sharpness.</p>
+      <button class="buy">Buy</button>
+    </article>
+    <article class="card">
+      <h3>Golden Armor</h3>
+      <p>Legendary protection for elite players.</p>
+      <button class="buy">Buy</button>
+    </article>
+    <article class="card">
+      <h3>Magic Potion</h3>
+      <p>Instant boost to your energy.</p>
+      <button class="buy">Buy</button>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACT (works) -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>
+    Discord: <a href="https://discord.gg/MzJtd5eTdC" target="_blank" rel="noopener">Our Discord</a> <br/>
+    Email: itemora.support@example.com
+  </p>
+</section>
+
+<footer>© 2025 Itemora</footer>
 
 </body>
 </html>
