@@ -3,243 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Itemora - In-Game Item Marketplace</title>
-
+<title>Itemora - Game Item Marketplace</title>
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #001a2c;
-  color: white;
-  overflow-x: hidden;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #001f31;
+    color: white;
 }
 
 /* navbar */
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  align-items: center;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px);
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+nav a:hover {
+    text-shadow: 0 0 10px cyan;
 }
 
-header a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  transition: .3s;
-  font-size: 17px;
-}
-header a:hover {
-  color: cyan;
-}
-
-/* logo */
-.logo img {
-  height: 70px;
-}
-
-/* discord top banner */
-.discord-top {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  text-align: center;
-  color: #b3e5fc;
-  font-size: 16px;
-  padding-top: 5px;
-}
-
-.discord-top a {
-  color: cyan;
-}
-
-/* hero section */
+/* hero */
 .hero {
-  text-align: center;
-  padding-top:120px;
+    text-align: center;
+    margin-top: 100px;
 }
 .hero h1 {
-  font-size: 50px;
-  color: cyan;
-  text-shadow: 0 0 20px cyan;
+    font-size: 40px;
+    color: cyan;
+    text-shadow: 0 0 15px cyan;
 }
-.hero p {
-  font-size: 18px;
-  opacity: .9;
+.hero button {
+    background: cyan;
+    border: none;
+    padding: 10px 25px;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
-.scroll-btn button {
-  padding: 15px 40px;
-  margin-top:15px;
-  border: none;
-  background: cyan;
-  color: #002233;
-  font-size:18px;
-  border-radius: 25px;
-  cursor:pointer;
+.hero button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px cyan;
 }
 
-/* shop section */
+/* featured items */
 section {
-  padding: 90px 50px;
+    text-align: center;
+    margin-top: 80px;
 }
-.items {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
 }
-
-/* login box */
-#loginBox {
-  width:350px;
-  margin: 90px auto;
-  background:#00263d;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-  display:none;
+.item-card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 10px;
 }
-.inputBox {
-  width:90%;
-  padding:12px;
-  margin-top:5px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-}
-.loginBtn {
-  width:45%;
-  padding:12px;
-  margin-top:8px;
-  margin-right:4px;
-  background:#00bfff;
-  color:#002233;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-.logoutBtn {
-  padding:8px 18px;
-  border-radius:10px;
-  background:red;
-  border:none;
-  cursor:pointer;
-  color:white;
-}
-
-/* mobile */
-@media(max-width:768px){
-  header {
-    padding:15px 18px;
-  }
-  .logo img {
-    height:55px;
-  }
-  .items {
-    grid-template-columns:1fr;
-  }
-  .hero h1 { font-size:34px; }
-  .hero p { font-size:16px; }
+.item-card button {
+    background: cyan;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 </style>
 </head>
+
 <body>
 
-<div class="discord-top">
-  Join our Discord Server — <a href="https://discord.gg/MzJtd5eTdC" target="_blank">Click here</a><br>
-  Giveaways everyday 🎁
+<nav>
+    <img src="logo.png" width="90">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button onclick="location.href='login.html'"
+        style="background:cyan;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;">
+        Sign In
+    </button>
+</nav>
+
+<div class="hero">
+    <h1>Welcome to Itemora</h1>
+    <p>Your trusted marketplace for in-game items.</p>
+    <button>Explore Shop</button>
 </div>
 
-<header>
- <div class="logo">
-   <img src="logo.png">
- </div>
-
- <nav>
-   <a href="#home">Home</a>
-   <a href="#shop">Shop</a>
-   <a href="#contact">Contact</a>
-   <span id="userStatus" style="margin-left:15px;color:cyan;"></span>
-   <button id="logoutBtn" class="logoutBtn" style="display:none;" onclick="logoutUser()">Logout</button>
-   <button id="loginBtn" onclick="showLogin()" style="padding:8px 18px;border-radius:10px;background:#00eaff;border:none;cursor:pointer;">
-     Sign In
-   </button>
- </nav>
-</header>
-
-<div id="home" class="hero">
-  <h1>Welcome to Itemora</h1>
-  <p>Your trusted marketplace for in-game items and digital treasures.</p>
-  <div class="scroll-btn">
-    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore Shop</button>
-  </div>
-</div>
-
-<div id="shop" class="section">
-  <h2>Featured Items</h2>
-  <div class="items">
-    <div>Epic Sword<br><button>Buy</button></div>
-    <div>Golden Armor<br><button>Buy</button></div>
-    <div>Magic Potion<br><button>Buy</button></div>
-  </div>
-</div>
-
-<!-- LOGIN BOX -->
-<div id="loginBox">
-  <h2>Email Login</h2>
-  <input id="email" class="inputBox" type="email" placeholder="Email">
-  <input id="password" class="inputBox" type="password" placeholder="Password">
-  <br>
-  <button class="loginBtn" onclick="loginEmail()">Login</button>
-  <button class="loginBtn" onclick="registerEmail()">Register</button>
-</div>
-
-<!-- Firebase Auth -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { 
-  getAuth, createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, signOut, onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "itemora-a0a21.firebaseapp.com",
-  projectId: "itemora-a0a21",
-  storageBucket: "itemora-a0a21.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.showLogin = () => document.getElementById("loginBox").style.display="block";
-
-window.loginEmail = () => {
-  signInWithEmailAndPassword(auth, email.value, password.value)
-  .catch(e => alert(e.message));
-};
-window.registerEmail = () => {
-  createUserWithEmailAndPassword(auth, email.value, password.value)
-  .catch(e => alert(e.message));
-};
-window.logoutUser = () => signOut(auth);
-
-onAuthStateChanged(auth, (user)=>{
-  if(user){
-    userStatus.innerText = user.email;
-    logoutBtn.style.display = "inline-block";
-    loginBtn.style.display = "none";
-    loginBox.style.display = "none";
-  } else {
-    userStatus.innerText = "";
-    logoutBtn.style.display = "none";
-    loginBtn.style.display = "inline-block";
-  }
-});
-</script>
+<section>
+    <h2>Featured Items</h2>
+    <div class="item-grid">
+        <div class="item-card"><h3>Epic Sword</h3><button>Buy</button></div>
+        <div class="item-card"><h3>Golden Armor</h3><button>Buy</button></div>
+        <div class="item-card"><h3>Magic Potion</h3><button>Buy</button></div>
+    </div>
+</section>
 
 </body>
 </html>
