@@ -4,79 +4,87 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Login | Itemora</title>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #001b29;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .container {
-        background: rgba(0, 33, 54, 0.8);
-        padding: 25px;
-        border-radius: 12px;
-        width: 320px;
-        text-align: center;
-        box-shadow: 0 0 15px rgba(0,255,255,0.4);
-    }
-    input {
-        width: 90%;
-        padding: 10px;
-        margin: 8px 0;
-        border-radius: 8px;
-        border: none;
-    }
-    button {
-        width: 90%;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        background: #00eaff;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.2s;
-    }
-    button:hover {
-        background: #04fefe;
-        box-shadow: 0 0 10px cyan;
-    }
-    #loader {
-        margin-top: 8px;
-        display: none;
-        color: cyan;
-        font-size: 14px;
-    }
-    a {
-        color: cyan;
-        font-size: 14px;
-        display: block;
-        margin-top: 10px;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: #001b29;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: rgba(0, 33, 54, 0.9);
+  padding: 30px;
+  width: 350px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+
+input {
+  width: 85%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  width: 90%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #00eaff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #03feff;
+  box-shadow: 0 0 10px cyan;
+}
+
+.back-btn {
+  margin-top: 12px;
+  font-size: 14px;
+  color: cyan;
+  cursor: pointer;
+}
+
+#loader {
+  display: none;
+  margin-top: 10px;
+  color: cyan;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
-    <h2>Login to Itemora</h2>
-    
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
+  <h2>Login to Itemora</h2>
 
-    <button id="loginBtn" onclick="handleLogin()">Login</button>
-    <button onclick="handleRegister()">Register</button>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
 
-    <div id="loader">⏳ Logging in...</div>
-    <a href="index.html">← Back to Home</a>
+  <button class="btn" id="loginBtn">Login</button>
+  <button class="btn" id="registerBtn">Register</button>
+
+  <div id="loader">Loading...</div>
+
+  <div class="back-btn" onclick="window.location='index.html'">← Back to Home</div>
 </div>
 
-<!-- ✅ Firebase Auth -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } 
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword }
 from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -92,44 +100,41 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-async function handleLogin() {
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
-    const btn = document.getElementById("loginBtn");
-    const load = document.getElementById("loader");
+// ✅ LOGIN
+document.getElementById("loginBtn").onclick = async () => {
+  const email = emailInput.value;
+  const pass = passInput.value;
+  const loader = document.getElementById("loader");
 
-    if (!email || !pass) { alert("Enter email and password."); return; }
+  loader.style.display = "block";
 
-    btn.disabled = true;
-    btn.innerText = "Logging in...";
-    load.style.display = "block";
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    alert("✅ Logged in!");
+    window.location = "index.html";
+  } catch (e) {
+    alert("❌ " + e.message);
+  }
 
-    try {
-        await signInWithEmailAndPassword(auth, email, pass);
-        alert("✅ Login success!");
-        window.location.href = "index.html";
-    } catch (err) {
-        alert("❌ " + err.message);
-    }
+  loader.style.display = "none";
+};
 
-    btn.disabled = false;
-    btn.innerText = "Login";
-    load.style.display = "none";
-}
+// ✅ REGISTER
+document.getElementById("registerBtn").onclick = async () => {
+  const email = emailInput.value;
+  const pass = passInput.value;
 
-async function handleRegister() {
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
+  try {
+    await createUserWithEmailAndPassword(auth, email, pass);
+    alert("✅ Account created! Now login.");
+  } catch (e) {
+    alert("❌ " + e.message);
+  }
+};
 
-    if (!email || !pass) { alert("Enter email and password."); return; }
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
 
-    try {
-        await createUserWithEmailAndPassword(auth, email, pass);
-        alert("✅ Registration complete! Now login.");
-    } catch (err) {
-        alert("❌ " + err.message);
-    }
-}
 </script>
 </body>
 </html>
