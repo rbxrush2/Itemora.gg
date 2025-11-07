@@ -209,5 +209,39 @@
 
 <footer>© 2025 Itemora</footer>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDBqCRDt-sjiCUmYpxk9lTHKxR0DM2fKQo",
+  authDomain: "itemora-a0a21.firebaseapp.com",
+  projectId: "itemora-a0a21",
+  storageBucket: "itemora-a0a21.firebasestorage.app",
+  messagingSenderId: "25090028733",
+  appId: "1:25090028733:web:2acf74043aae85b3bbf3d4",
+  measurementId: "G-HCHGBL8CPN"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const authBtn = document.getElementById("authBtn");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    authBtn.textContent = "Log Out";
+    authBtn.onclick = () => {
+      if (confirm("Are you sure you want to log out?")) {
+        signOut(auth);
+      }
+    };
+  } else {
+    authBtn.textContent = "Sign In";
+    authBtn.onclick = () => location.href = "login.html";
+  }
+});
+</script>
+
 </body>
 </html>
