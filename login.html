@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itemora - Login</title>
+<style>
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #001f31;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+.box {
+  background: rgba(255,255,255,0.05);
+  padding: 35px;
+  width: 300px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,234,255,0.2);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  width: 95%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #00eaff;
+  color: #002630;
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px cyan;
+}
+
+.back {
+  background: #555;
+  margin-top: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Login to Itemora</h2>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+  <button onclick="register()">Register</button>
+  <button class="back" onclick="location.href='index.html'">← Back to Home</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDBqCRDt-sjiCUmYpxk9lTHKxR0DM2fKQo",
+  authDomain: "itemora-a0a21.firebaseapp.com",
+  projectId: "itemora-a0a21",
+  storageBucket: "itemora-a0a21.firebasestorage.app",
+  messagingSenderId: "25090028733",
+  appId: "1:25090028733:web:2acf74043aae85b3bbf3d4"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function () {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, pass)
+    .then(() => {
+      alert("✅ Logged in!");
+      location.href = "index.html";
+    })
+    .catch((err) => alert("❌ " + err.message));
+};
+
+window.register = function () {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+
+  createUserWithEmailAndPassword(auth, email, pass)
+    .then(() => alert("✅ Account created! Please login."))
+    .catch((err) => alert("❌ " + err.message));
+};
+</script>
+
+</body>
+</html>
