@@ -7,72 +7,73 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: #02202e;
-        color: #fff;
+        background: #001b29;
+        color: white;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
     }
-
-    .box {
-        background: rgba(0,0,0,0.35);
-        padding: 30px;
-        border-radius: 10px;
+    .container {
+        background: rgba(0, 33, 54, 0.8);
+        padding: 25px;
+        border-radius: 12px;
         width: 320px;
         text-align: center;
-        box-shadow: 0 0 15px #00f7ff;
+        box-shadow: 0 0 15px rgba(0,255,255,0.4);
     }
-
     input {
         width: 90%;
         padding: 10px;
         margin: 8px 0;
-        border-radius: 5px;
+        border-radius: 8px;
         border: none;
-        outline: none;
     }
-
     button {
-        width: 95%;
+        width: 90%;
         padding: 10px;
-        margin: 10px 0;
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
+        background: #00eaff;
         cursor: pointer;
-        background: #00f7ff;
-        color: #000;
         font-weight: bold;
         transition: 0.2s;
     }
-
     button:hover {
-        box-shadow: 0 0 12px #00f7ff;
+        background: #04fefe;
+        box-shadow: 0 0 10px cyan;
     }
-
-    a {
-        color: #00f7ff;
-        text-decoration: none;
+    #loader {
+        margin-top: 8px;
+        display: none;
+        color: cyan;
         font-size: 14px;
     }
-
+    a {
+        color: cyan;
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+    }
 </style>
 </head>
+
 <body>
+<div class="container">
+    <h2>Login to Itemora</h2>
+    
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
 
-<div class="box">
-    <h2>Itemora Login</h2>
+    <button id="loginBtn" onclick="handleLogin()">Login</button>
+    <button onclick="handleRegister()">Register</button>
 
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-
-    <button onclick="login()">Login</button>
-    <button onclick="register()">Register</button>
-    <br>
+    <div id="loader">⏳ Logging in...</div>
     <a href="index.html">← Back to Home</a>
 </div>
 
+<!-- ✅ Firebase Auth -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } 
@@ -91,32 +92,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.login = function() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert("✅ Logged in successfully!");
+async function handleLogin() {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+    const btn = document.getElementById("loginBtn");
+    const load = document.getElementById("loader");
+
+    if (!email || !pass) { alert("Enter email and password."); return; }
+
+    btn.disabled = true;
+    btn.innerText = "Logging in...";
+    load.style.display = "block";
+
+    try {
+        await signInWithEmailAndPassword(auth, email, pass);
+        alert("✅ Login success!");
         window.location.href = "index.html";
-      })
-      .catch((error) => {
-        alert("❌ " + error.message);
-      });
-};
+    } catch (err) {
+        alert("❌ " + err.message);
+    }
 
-window.register = function() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    btn.disabled = false;
+    btn.innerText = "Login";
+    load.style.display = "none";
+}
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert("✅ Account created! You can now log in.");
-      })
-      .catch((error) => {
-        alert("❌ " + error.message);
-      });
-};
+async function handleRegister() {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    if (!email || !pass) { alert("Enter email and password."); return; }
+
+    try {
+        await createUserWithEmailAndPassword(auth, email, pass);
+        alert("✅ Registration complete! Now login.");
+    } catch (err) {
+        alert("❌ " + err.message);
+    }
+}
 </script>
 </body>
 </html>
