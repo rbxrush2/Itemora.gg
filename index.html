@@ -226,22 +226,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// ✅ Nav button
 const authBtn = document.getElementById("authBtn");
 
+// ✅ Check login state
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    authBtn.textContent = "Log Out";
-    authBtn.onclick = () => {
-      if (confirm("Are you sure you want to log out?")) {
-        signOut(auth);
-      }
-    };
-  } else {
-    authBtn.textContent = "Sign In";
-    authBtn.onclick = () => location.href = "login.html";
-  }
+    if (user) {
+        authBtn.innerText = "Logout";
+        authBtn.onclick = () => {
+            signOut(auth).then(() => {
+                alert("✅ Logged out!");
+                location.reload();
+            });
+        };
+    } else {
+        authBtn.innerText = "Sign In";
+        authBtn.onclick = () => {
+            window.location.href = "login.html";
+        };
+    }
 });
 </script>
+
 
 </body>
 </html>
