@@ -1,110 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Itemora - Game Item Marketplace</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
-    body{background:linear-gradient(135deg,#02101f,#062b48);color:#fff;overflow-x:hidden;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:20px 80px;background:rgba(10,25,41,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;}
-    .logo img{height:75px;transition:.3s;}
-    .logo img:hover{transform:scale(1.08);filter:drop-shadow(0 0 15px #00eaff);}
-    nav a{margin:0 15px;color:#ccc;text-decoration:none;transition:.3s;cursor:pointer;}
-    nav a:hover{color:#00eaff;text-shadow:0 0 8px #00eaff;}
-    .hero{text-align:center;padding:120px 20px;position:relative;}
-    .hero h1{font-size:64px;color:#00eaff;text-shadow:0 0 15px #00bcd4;}
-    .hero p{margin-top:15px;font-size:20px;color:#b3e5fc;}
-    #loginBtn,#logoutBtn{padding:8px 16px;border:none;border-radius:6px;color:white;cursor:pointer;margin-left:10px;}
-    #loginBtn{background:#00bcd4;}#logoutBtn{background:#ff4757;display:none;}
-    .scroll-btn button{margin-top:40px;padding:15px 40px;background:linear-gradient(90deg,#00bcd4,#0097a7);border:none;border-radius:30px;color:white;font-size:18px;cursor:pointer;transition:.3s;}
-    .scroll-btn button:hover{transform:scale(1.05);box-shadow:0 0 20px #00eaff;}
-    .section{padding:80px 40px;min-height:100vh;}
-    .discord-top{position:absolute;top:0;width:100%;text-align:center;font-size:16px;color:#b3e5fc;padding-top:5px;}
-    .discord-top a{color:#00eaff;text-decoration:none;font-weight:700;transition:.3s;}
-    .discord-top a:hover{text-shadow:0 0 12px #00eaff;}
-    .discord-top p{margin-top:5px;font-size:14px;color:#89ccff;}
-    footer{text-align:center;padding:30px;background:#03111c;color:#888;font-size:14px;border-top:1px solid rgba(255,255,255,0.1);}  
-      .items{padding:40px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
-    .item{background:#0d2336;border-radius:15px;text-align:center;padding:20px;transition:.3s}
-    .item:hover{transform:translateY(-8px);box-shadow:0 0 20px #00bcd4}
-    .item img{width:100%;border-radius:10px}
-    .item h3{margin:15px 0 5px;color:#00eaff}
-    .item p{color:#ccc;font-size:14px}
-    .item button{margin-top:15px;padding:10px 25px;background:#00bcd4;border:none;border-radius:20px;color:#fff;cursor:pointer;transition:.3s}
-    .item button:hover{background:#00eaff;box-shadow:0 0 15px #00eaff}
-  @media(max-width:768px){header{padding:15px 20px;flex-wrap:wrap;}nav a, #loginBtn, #logoutBtn{margin:5px;font-size:14px;} .hero h1{font-size:36px;} .hero p{font-size:16px;} .scroll-btn button{padding:12px 25px;font-size:16px;} .items{grid-template-columns:1fr;} .logo img{height:55px;}} </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itemora - In-Game Item Marketplace</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #001a2c;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+}
+
+header a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: .3s;
+  font-size: 17px;
+}
+header a:hover {
+  color: cyan;
+}
+
+/* logo */
+.logo img {
+  height: 70px;
+}
+
+/* discord top banner */
+.discord-top {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  color: #b3e5fc;
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.discord-top a {
+  color: cyan;
+}
+
+/* hero section */
+.hero {
+  text-align: center;
+  padding-top:120px;
+}
+.hero h1 {
+  font-size: 50px;
+  color: cyan;
+  text-shadow: 0 0 20px cyan;
+}
+.hero p {
+  font-size: 18px;
+  opacity: .9;
+}
+.scroll-btn button {
+  padding: 15px 40px;
+  margin-top:15px;
+  border: none;
+  background: cyan;
+  color: #002233;
+  font-size:18px;
+  border-radius: 25px;
+  cursor:pointer;
+}
+
+/* shop section */
+section {
+  padding: 90px 50px;
+}
+.items {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+/* login box */
+#loginBox {
+  width:350px;
+  margin: 90px auto;
+  background:#00263d;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  display:none;
+}
+.inputBox {
+  width:90%;
+  padding:12px;
+  margin-top:5px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+}
+.loginBtn {
+  width:45%;
+  padding:12px;
+  margin-top:8px;
+  margin-right:4px;
+  background:#00bfff;
+  color:#002233;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+.logoutBtn {
+  padding:8px 18px;
+  border-radius:10px;
+  background:red;
+  border:none;
+  cursor:pointer;
+  color:white;
+}
+
+/* mobile */
+@media(max-width:768px){
+  header {
+    padding:15px 18px;
+  }
+  .logo img {
+    height:55px;
+  }
+  .items {
+    grid-template-columns:1fr;
+  }
+  .hero h1 { font-size:34px; }
+  .hero p { font-size:16px; }
+}
+</style>
 </head>
 <body>
+
+<div class="discord-top">
+  Join our Discord Server — <a href="https://discord.gg/MzJtd5eTdC" target="_blank">Click here</a><br>
+  Giveaways everyday 🎁
+</div>
+
 <header>
-  <div class="logo"><img src="logo.png" alt="Itemora Logo"></div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Contact</a>
-    <button id="loginBtn">Sign in</button>
-    <button id="logoutBtn">Logout</button>
-    <span id="userBox" style="font-size:14px;color:#b3e5fc;margin-left:10px;"></span>
-  </nav>
+ <div class="logo">
+   <img src="logo.png">
+ </div>
+
+ <nav>
+   <a href="#home">Home</a>
+   <a href="#shop">Shop</a>
+   <a href="#contact">Contact</a>
+   <span id="userStatus" style="margin-left:15px;color:cyan;"></span>
+   <button id="logoutBtn" class="logoutBtn" style="display:none;" onclick="logoutUser()">Logout</button>
+   <button id="loginBtn" onclick="showLogin()" style="padding:8px 18px;border-radius:10px;background:#00eaff;border:none;cursor:pointer;">
+     Sign In
+   </button>
+ </nav>
 </header>
 
-<section class="hero" id="home">
-  <div class="discord-top">
-    <a href="https://discord.gg/MzJtd5eTdC" target="_blank">Join our Discord Server</a>
-    <p>Giveaways everyday</p>
-  </div>
+<div id="home" class="hero">
   <h1>Welcome to Itemora</h1>
   <p>Your trusted marketplace for in-game items and digital treasures.</p>
-  <div class="scroll-btn"><button onclick="document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">Explore Shop</button></div>
-</section>
-
-<section class="section" id="shop">
-  <h2>Featured Items</h2><br>
-  <div class="items">
-    <div class="item"><img src="https://via.placeholder.com/300x200.png?text=Item+1"><h3>Epic Sword</h3><p>Powerful blade with unmatched sharpness.</p><button>Buy Now</button></div>
-    <div class="item"><img src="https://via.placeholder.com/300x200.png?text=Item+2"><h3>Golden Armor</h3><p>Legendary protection for elite players.</p><button>Buy Now</button></div>
-    <div class="item"><img src="https://via.placeholder.com/300x200.png?text=Item+3"><h3>Magic Potion</h3><p>Instant boost to your game energy.</p><button>Buy Now</button></div>
+  <div class="scroll-btn">
+    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Explore Shop</button>
   </div>
-</section>
+</div>
 
-<section class="section" id="contact">
-  <h2>Contact Us</h2><br>
-  <p><b>Discord:</b> <a href="https://discord.gg/MzJtd5eTdC" target="_blank" style="color:#00eaff;">Our Discord</a></p>
-  <p><b>Email:</b> itemora.support@example.com</p>
-</section>
+<div id="shop" class="section">
+  <h2>Featured Items</h2>
+  <div class="items">
+    <div>Epic Sword<br><button>Buy</button></div>
+    <div>Golden Armor<br><button>Buy</button></div>
+    <div>Magic Potion<br><button>Buy</button></div>
+  </div>
+</div>
 
-<footer>© 2025 Itemora. All rights reserved.</footer>
+<!-- LOGIN BOX -->
+<div id="loginBox">
+  <h2>Email Login</h2>
+  <input id="email" class="inputBox" type="email" placeholder="Email">
+  <input id="password" class="inputBox" type="password" placeholder="Password">
+  <br>
+  <button class="loginBtn" onclick="loginEmail()">Login</button>
+  <button class="loginBtn" onclick="registerEmail()">Register</button>
+</div>
 
+<!-- Firebase Auth -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { 
+  getAuth, createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDNyNp5k1TRwQBEQFkPko",
-    authDomain: "itemora-a0a21.firebaseapp.com",
-    projectId: "itemora-a0a21",
-    storageBucket: "itemora-a0a21.appspot.com",
-    messagingSenderId: "59306927579",
-    appId: "1:59306927579:web:2ca0f7448aaae5a8ba0fad",
-    measurementId: "G-HNC8LBC8RW"
-  };
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "itemora-a0a21.firebaseapp.com",
+  projectId: "itemora-a0a21",
+  storageBucket: "itemora-a0a21.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-  const loginBtn=document.getElementById("loginBtn");
-  const logoutBtn=document.getElementById("logoutBtn");
-  const userBox=document.getElementById("userBox");
+window.showLogin = () => document.getElementById("loginBox").style.display="block";
 
-  loginBtn.onclick=()=>signInWithPopup(auth,provider);
-  logoutBtn.onclick=()=>signOut(auth);
+window.loginEmail = () => {
+  signInWithEmailAndPassword(auth, email.value, password.value)
+  .catch(e => alert(e.message));
+};
+window.registerEmail = () => {
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+  .catch(e => alert(e.message));
+};
+window.logoutUser = () => signOut(auth);
 
-  onAuthStateChanged(auth,user=>{
-    if(user){userBox.innerHTML=`Logged in as <b>${user.displayName}</b>`;loginBtn.style.display="none";logoutBtn.style.display="inline-block";}
-    else{userBox.innerHTML='';loginBtn.style.display="inline-block";logoutBtn.style.display="none";}
-  });
+onAuthStateChanged(auth, (user)=>{
+  if(user){
+    userStatus.innerText = user.email;
+    logoutBtn.style.display = "inline-block";
+    loginBtn.style.display = "none";
+    loginBox.style.display = "none";
+  } else {
+    userStatus.innerText = "";
+    logoutBtn.style.display = "none";
+    loginBtn.style.display = "inline-block";
+  }
+});
 </script>
 
 </body>
