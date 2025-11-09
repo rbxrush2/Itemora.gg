@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Explore Games - Itemora</title>
+<link rel="icon" type="image/png" href="logo.png" />
+
+<style>
+/* global */
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#001b26;
+    color:white;
+}
+
+/* container */
+.explore-container {
+    padding: 120px 20px;
+    text-align:center;
+}
+
+/* Title */
+.explore-container h1 {
+    font-size: 42px;
+    margin-bottom: 50px;
+    text-shadow:0 0 12px #00eaff;
+}
+
+/* Card Container */
+.game-grid {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+/* Game Card */
+.game-card {
+    background: rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:25px;
+    width:260px;
+    transition:0.25s ease;
+    border:1px solid rgba(0,255,0,0.2);
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    box-shadow:0 0 25px rgba(0,255,0,0.45);
+    border-color:rgba(0,255,0,0.8);
+}
+
+/* Button */
+.game-btn {
+    background:#00ff80;
+    padding:10px 18px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:10px;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.game-btn:hover {
+    box-shadow:0 0 18px #00ff80;
+    transform:scale(1.08);
+}
+
+/* Back link */
+.back {
+    display:inline-block;
+    margin-top:40px;
+    color:#00eaff;
+    font-weight:bold;
+    text-decoration:none;
+}
+.back:hover {
+    text-shadow:0 0 10px #00eaff;
+}
+
+/* same floating glowing bg as homepage */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+
+    background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.18), transparent 55%),
+                radial-gradient(circle at 80% 70%, rgba(122, 64, 255, 0.18), transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.10), transparent 70%),
+                #02121F;
+    animation: bgFloat 12s ease-in-out infinite alternate;
+    filter: blur(40px);
+}
+
+@keyframes bgFloat {
+    0% {background-position: 0% 100%; transform: scale(1);}
+    100% {background-position: 100% 0%; transform: scale(1.4);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="explore-container">
+    <h1>Explore Games</h1>
+
+    <div class="game-grid">
+
+        <!-- Grow A Garden Game Card -->
+        <div class="game-card">
+            <h2>Grow a Garden</h2>
+            <p>Buy in-game items, boosts and more.</p>
+            <button class="game-btn" onclick="alert('Store for Grow a Garden coming soon!')">Open</button>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="back">← Back to Home</a>
+</div>
+
+</body>
+</html>
