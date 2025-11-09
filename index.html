@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Itemora - In-Game Marketplace</title>
 <link rel="icon" type="image/png" href="logo.png">
 
@@ -10,20 +10,17 @@
 /* ---------------- GLOBAL ---------------- */
 :root{
   --teal:#00eaff;
-  --ink:#001b26;
-  --panel:rgba(255,255,255,.06);
-  --panel-b:#03222d;
 }
 *{box-sizing:border-box}
 html,body{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#001b26;            /* keep simple bg; we can swap to image later */
-  color:#fff;
+  font-family:Arial, sans-serif;
+  background:#001b26;
+  color:white;
 }
 
-/* Discord strip */
+/* ---------------- TOP BANNER ---------------- */
 .discord-top{
   background:#002837;
   text-align:center;
@@ -32,162 +29,167 @@ body{
 }
 .discord-top a{
   color:var(--teal);
-  font-weight:700;
+  font-weight:bold;
   text-decoration:none;
+  text-shadow:0 0 6px var(--teal);
   transition:.2s;
 }
-.discord-top a:hover{ filter:drop-shadow(0 0 8px var(--teal)); }
+.discord-top a:hover{
+  filter:drop-shadow(0 0 10px var(--teal));
+}
 
 /* ---------------- HEADER ---------------- */
 header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   padding:16px 40px;
 }
+
 .logo img{
   width:120px;
   cursor:pointer;
-  filter:drop-shadow(0 0 8px rgba(0,234,255,.6));
-  transition:.2s;
+  transition:.25s ease;
 }
-.logo img:hover{ filter:drop-shadow(0 0 14px var(--teal)); transform:translateY(-1px); }
+.logo img:hover{
+  transform:scale(1.06);
+  filter:drop-shadow(0 0 15px var(--teal));
+}
 
-nav{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
 nav a{
-  color:#fff;
+  margin:0 12px;
+  color:white;
   text-decoration:none;
   font-weight:600;
-  padding:6px 2px;
-  transition:.18s ease;
+  transition:.2s;
 }
 nav a:hover{
   color:var(--teal);
-  text-shadow:0 0 8px rgba(0,234,255,.8);
-  transform:translateY(-1px);
+  transform:scale(1.08);
+  text-shadow:0 0 12px var(--teal);
 }
 
-/* buttons */
+/* ---------------- BUTTONS ---------------- */
 .btn{
   background:var(--teal);
-  color:#002026;
   border:none;
-  border-radius:22px;
-  padding:9px 20px;
+  padding:9px 22px;
+  border-radius:20px;
   font-weight:800;
   cursor:pointer;
   transition:.2s ease;
-  box-shadow:0 0 10px rgba(0,234,255,.55);
+  color:black;
 }
 .btn:hover{
-  box-shadow:0 0 20px rgba(0,234,255,.9);
-  transform:translateY(-1px);
+  transform:scale(1.07);
+  box-shadow:0 0 16px var(--teal);
 }
 
 /* ---------------- HERO ---------------- */
 .hero{
   text-align:center;
-  padding:110px 20px 70px;
+  padding:120px 20px 70px;
 }
+
 .main-title{
   font-size:42px;
+  font-weight:900;
   color:var(--teal);
-  text-shadow:0 0 16px rgba(0,234,255,.75);
-  margin:0 0 8px;
+  text-shadow:0 0 16px rgba(0,234,255,.7);
 }
+
 .tagline{
+  font-size:18px;
   color:#c7f7ff;
-  opacity:.95;
-  margin:0 0 20px;
+  margin-bottom:22px;
+  opacity:0.9;
 }
+
+/* CTA button (Explore Games) */
 .cta{
   display:inline-block;
   background:var(--teal);
-  color:#002026;
   padding:12px 28px;
   border-radius:30px;
+  color:black;
   font-weight:800;
   text-decoration:none;
-  transition:.2s;
-  box-shadow:0 0 14px rgba(0,234,255,.7);
+  transition:.25s ease;
 }
 .cta:hover{
-  box-shadow:0 0 26px rgba(0,234,255,1);
-  transform:translateY(-1px);
+  box-shadow:0 0 22px var(--teal);
+  transform:scale(1.07);
 }
 
-/* ---------------- SECTIONS ---------------- */
-.section{
-  padding:60px 20px;
-  text-align:center;
-}
+/* ---------------- SECTION ---------------- */
+.section{ text-align:center; padding:60px 20px; }
 .section-title{
   font-size:30px;
-  margin:0 0 24px;
+  margin-bottom:24px;
+  color:#e3faff;
 }
-.dim-glow{ text-shadow:0 0 4px rgba(0,234,255,.5); } /* reduced static glow */
 
 /* ---------------- ITEMS ---------------- */
 .item-grid{
   display:flex;
-  gap:22px;
+  gap:24px;
   justify-content:center;
   flex-wrap:wrap;
 }
+
 .item-box{
-  width:280px;
-  background:var(--panel);
-  border:1px solid rgba(0,234,255,.18);
-  border-radius:14px;
+  width:270px;
+  background:rgba(0,0,0,.25);
   padding:22px;
-  text-align:left;
-  transition:.22s ease;
+  border-radius:14px;
+  border:1px solid rgba(0,234,255,.4);
+  transition:.25s ease;
+}
+.item-box:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 22px rgba(0,234,255,.6);
 }
 .item-box h3{ margin:0 0 6px; }
-.item-box p{ margin:0 0 12px; color:#cfefff; }
-.item-box:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 22px rgba(0,234,255,.45);
-}
+
+/* buy button */
 .buy-btn{
   background:var(--teal);
-  color:#002026;
   border:none;
-  border-radius:20px;
-  padding:8px 18px;
+  padding:9px 18px;
+  border-radius:18px;
   font-weight:800;
   cursor:pointer;
-  transition:.18s;
-  box-shadow:0 0 10px rgba(0,234,255,.55);
+  transition:.2s;
+  color:black;
 }
-.buy-btn:hover{ box-shadow:0 0 18px rgba(0,234,255,.95); }
+.buy-btn:hover{
+  box-shadow:0 0 18px var(--teal);
+  transform:scale(1.07);
+}
 
 /* ---------------- HOW IT WORKS ---------------- */
 .steps-grid{
   display:flex;
-  gap:18px;
+  gap:20px;
   justify-content:center;
   flex-wrap:wrap;
 }
+
 .step-card{
   width:240px;
-  background:var(--panel);
-  border:1px solid rgba(0,234,255,.15);
-  border-radius:12px;
+  background:rgba(0,0,0,.25);
   padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(0,234,255,.35);
   text-align:left;
-  transition:.2s;
+  transition:.25s ease;
 }
 .step-card:hover{
-  box-shadow:0 0 18px rgba(0,234,255,.35);
-  transform:translateY(-3px);
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(0,234,255,.45);
 }
 
-/* ---------------- CONTACT/FOOTER ---------------- */
+/* ---------------- FOOTER ---------------- */
 footer{
   text-align:center;
   padding:24px;
@@ -196,18 +198,19 @@ footer{
 }
 </style>
 </head>
+
 <body>
 
-<!-- Discord Banner -->
+<!-- Discord -->
 <div class="discord-top">
-  <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank" rel="noopener">Join our Discord Server</a><br>
+  <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank">Join our Discord Server</a><br>
   <small>Giveaways everyday 🎉</small>
 </div>
 
 <!-- Header -->
 <header>
   <div class="logo" onclick="location.href='index.html'">
-    <img src="logo.png" alt="Itemora">
+    <img src="logo.png">
   </div>
 
   <nav>
@@ -220,31 +223,31 @@ footer{
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <h1 class="main-title">Upgrade Your Gaming Experience Instantly ⚡</h1>
-  <p class="tagline">Fast, secure & trusted marketplace for in-game items.</p>
+  <h1 class="main-title">Trusted Digital Marketplace For Gamers 🔥</h1>
+  <p class="tagline">Fast delivery. Secure checkout. Smooth experience.</p>
   <a href="#shop" class="cta">Explore Games</a>
 </section>
 
 <!-- POPULAR ITEMS -->
 <section id="shop" class="section">
-  <h2 class="section-title dim-glow">Popular Items</h2>
+  <h2 class="section-title">Popular Items</h2>
 
   <div class="item-grid">
     <div class="item-box">
       <h3>Epic Sword</h3>
-      <p>Unmatched sharpness & power.</p>
+      <p>Strongest sword to dominate matches.</p>
       <button class="buy-btn">Buy</button>
     </div>
 
     <div class="item-box">
       <h3>Golden Armor</h3>
-      <p>Legendary protection for elite players.</p>
+      <p>Top-tier armor for unbeatable defense.</p>
       <button class="buy-btn">Buy</button>
     </div>
 
     <div class="item-box">
       <h3>Magic Potion</h3>
-      <p>Instant boost to your energy.</p>
+      <p>Instant high-energy boost during fights.</p>
       <button class="buy-btn">Buy</button>
     </div>
   </div>
@@ -252,37 +255,25 @@ footer{
 
 <!-- HOW IT WORKS -->
 <section id="how" class="section">
-  <h2 class="section-title dim-glow">How Itemora Works</h2>
+  <h2 class="section-title">How Itemora Works</h2>
 
   <div class="steps-grid">
-    <div class="step-card">
-      <h3>🎮 Choose Your Game</h3>
-      <p>Select the game & item you want.</p>
-    </div>
-    <div class="step-card">
-      <h3>⚡ Instant Delivery</h3>
-      <p>Fast, reliable delivery after purchase.</p>
-    </div>
-    <div class="step-card">
-      <h3>🔐 Secure Payments</h3>
-      <p>Protected checkout & verified sellers.</p>
-    </div>
-    <div class="step-card">
-      <h3>💬 24/7 Support</h3>
-      <p>Friendly help on Discord anytime.</p>
-    </div>
+    <div class="step-card"><h3>🎮 Select Items</h3><p>Choose the game & items you want.</p></div>
+    <div class="step-card"><h3>⚡ Fast Delivery</h3><p>Receive your items quickly & securely.</p></div>
+    <div class="step-card"><h3>🔐 Secure Checkout</h3><p>Protected payments & verified platform.</p></div>
+    <div class="step-card"><h3>💬 Support</h3><p>We're available on Discord 24/7.</p></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
-  <h2 class="section-title dim-glow">Contact</h2>
+  <h2 class="section-title">Contact</h2>
   <p>Email: itemora.support@gmail.com</p>
 </section>
 
 <footer>© 2025 Itemora</footer>
 
-<!-- -------------- FIREBASE AUTH -------------- -->
+<!-- ---------------- FIREBASE ---------------- -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -299,26 +290,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const btn = document.getElementById("authBtn");
 
-const authBtn = document.getElementById("authBtn");
-
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, user => {
   if (user) {
-    authBtn.textContent = "Logout";
-    authBtn.onclick = async () => {
-      const ok = confirm("Are you sure you want to log out?");
-      if (!ok) return;
-      try {
-        await signOut(auth);
-        alert("Logged out successfully.");
-        location.reload();
-      } catch (e) {
-        alert("Error logging out. Try again.");
+    btn.textContent = "Logout";
+    btn.onclick = () => {
+      if(confirm("Log out from Itemora?")) {
+        signOut(auth);
       }
     };
   } else {
-    authBtn.textContent = "Sign In";
-    authBtn.onclick = () => location.href = "login.html";
+    btn.textContent = "Sign In";
+    btn.onclick = () => location.href="login.html";
   }
 });
 </script>
