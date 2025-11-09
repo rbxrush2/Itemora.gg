@@ -1,129 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore Games - Itemora</title>
 <link rel="icon" type="image/png" href="logo.png" />
 
 <style>
-/* global */
+
+/* BACKGROUND same vibe as homepage */
 body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#001b26;
-    color:white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #001b26;
+  color: white;
 }
 
-/* container */
-.explore-container {
-    padding: 120px 20px;
-    text-align:center;
+/* Header Title */
+.explore-title {
+  font-size: 42px;
+  font-weight: 900;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  width: 100%;
+  color: #00eaff;
+  text-shadow: 0 0 12px rgba(0, 234, 255, 0.6);
+  animation: fadeDown 0.7s ease forwards;
+}
+
+/* Fade Animation */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Game Grid */
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+/* Game Card style */
+.game-card {
+  width: 260px;
+  padding: 25px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  transition: .25s;
+  backdrop-filter: blur(4px);
 }
 
 /* Title */
-.explore-container h1 {
-    font-size: 42px;
-    margin-bottom: 50px;
-    text-shadow:0 0 12px #00eaff;
+.game-card h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
-/* Card Container */
-.game-grid {
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:30px;
-}
-
-/* Game Card */
-.game-card {
-    background: rgba(255,255,255,0.05);
-    border-radius:20px;
-    padding:25px;
-    width:260px;
-    transition:0.25s ease;
-    border:1px solid rgba(0,255,0,0.2);
-}
-
-.game-card:hover {
-    transform: scale(1.05);
-    box-shadow:0 0 25px rgba(0,255,0,0.45);
-    border-color:rgba(0,255,0,0.8);
+/* Description */
+.game-card p {
+  font-size: 14px;
+  opacity: .8;
+  margin-bottom: 16px;
 }
 
 /* Button */
-.game-btn {
-    background:#00ff80;
-    padding:10px 18px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
-    margin-top:10px;
-    font-weight:bold;
-    transition:0.2s;
+.game-card button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 22px;
+  background: #00eaff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .25s;
+  box-shadow: 0 0 12px rgba(0,234,255,0.5);
 }
-
-.game-btn:hover {
-    box-shadow:0 0 18px #00ff80;
-    transform:scale(1.08);
+.game-card button:hover {
+  transform: scale(1.07);
 }
 
 /* Back link */
 .back {
-    display:inline-block;
-    margin-top:40px;
-    color:#00eaff;
-    font-weight:bold;
-    text-decoration:none;
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  color: #38eaff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
 }
-.back:hover {
-    text-shadow:0 0 10px #00eaff;
-}
+.back:hover { text-shadow: 0 0 10px #00eaff }
 
-/* same floating glowing bg as homepage */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
+/* Glow Colors on hover */
+.game-card.red:hover       { box-shadow: 0 0 25px rgba(255,0,0,.7); }
+.game-card.darkred:hover   { box-shadow: 0 0 25px rgba(180,0,0,.7); }
+.game-card.black:hover     { box-shadow: 0 0 25px rgba(0,0,0,.8); }
+.game-card.green:hover     { box-shadow: 0 0 25px rgba(0,255,0,.6); }
+.game-card.dgreen:hover    { box-shadow: 0 0 25px rgba(0,150,0,.7); }
+.game-card.yellow:hover    { box-shadow: 0 0 25px rgba(255,255,0,.7); }
+.game-card.blue:hover      { box-shadow: 0 0 25px rgba(0,140,255,.7); }
+.game-card.purple:hover    { box-shadow: 0 0 25px rgba(190,0,255,.7); }
 
-    background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.18), transparent 55%),
-                radial-gradient(circle at 80% 70%, rgba(122, 64, 255, 0.18), transparent 55%),
-                radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.10), transparent 70%),
-                #02121F;
-    animation: bgFloat 12s ease-in-out infinite alternate;
-    filter: blur(40px);
-}
-
-@keyframes bgFloat {
-    0% {background-position: 0% 100%; transform: scale(1);}
-    100% {background-position: 100% 0%; transform: scale(1.4);}
-}
 </style>
 </head>
-
 <body>
 
-<div class="explore-container">
-    <h1>Explore Games</h1>
+<h1 class="explore-title">Explore Games</h1>
 
-    <div class="game-grid">
+<div class="game-list">
 
-        <!-- Grow A Garden Game Card -->
-        <div class="game-card">
-            <h2>Grow a Garden</h2>
-            <p>Buy in-game items, boosts and more.</p>
-            <button class="game-btn" onclick="alert('Store for Grow a Garden coming soon!')">Open</button>
-        </div>
+  <div class="game-card green">
+    <h2>Grow a Garden</h2>
+    <p>Buy in-game items & boosts</p>
+    <button>Open</button>
+  </div>
 
-    </div>
+  <div class="game-card red">
+    <h2>Steal a Brainrot</h2>
+    <p>Collect rot & dominate memes</p>
+    <button>Open</button>
+  </div>
 
-    <a href="index.html" class="back">← Back to Home</a>
+  <div class="game-card black">
+    <h2>99 Days</h2>
+    <p>Survive the chaos...</p>
+    <button>Open</button>
+  </div>
+
+  <div class="game-card dgreen">
+    <h2>Plants vs Brainrots</h2>
+    <p>Battle meme zombies & memes</p>
+    <button>Open</button>
+  </div>
+
+  <div class="game-card yellow">
+    <h2>Blox Fruits</h2>
+    <p>Buy race v4 boosts & more</p>
+    <button>Open</button>
+  </div>
+
+  <div class="game-card darkred">
+    <h2>Murder Mystery 2</h2>
+    <p>Trade knives & guns instantly</p>
+    <button>Open</button>
+  </div>
+
+  <div class="game-card blue">
+    <h2>Fisch</h2>
+    <p>Grab rare fish boosts</p>
+    <button>Open</button>
+  </div>
+
+  <div class="game-card purple">
+    <h2>Rivals</h2>
+    <p>Compete in epic card battles</p>
+    <button>Open</button>
+  </div>
+
 </div>
+
+<a href="index.html" class="back">← Back to Home</a>
 
 </body>
 </html>
