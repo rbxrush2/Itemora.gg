@@ -1,214 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Itemora - Game Item Marketplace</title>
-<link rel="icon" type="image/png" href="logo.png"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itemora • In-game Marketplace</title>
 <style>
-  :root{
-    --bg1:#051b2b;
-    --bg2:#0a2a40;
-    --cyan:#00eaff;
-    --cyan-d:#00c6d9;
-    --text:#e8f7ff;
-    --muted:#a8d8ef;
-    --card:#0c2336;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    color:var(--text);
-    background:radial-gradient(1200px 600px at 50% -200px, #0d3e57 0%, transparent 60%), linear-gradient(180deg,var(--bg1),var(--bg2));
-    overflow-x:hidden;
-  }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #001c28, #000d14);
+    color: white;
+    overflow-x: hidden;
+}
 
-  /* Top Discord banner */
-  .discord-top{
-    position:fixed;
-    top:0; left:0; right:0;
+/* Subtle game particle BG */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://i.ibb.co/Wfnxk1p/noisebg.png");
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+}
+
+/* Logo Animation */
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00f8ff;
+    cursor: pointer;
+    filter: drop-shadow(0 0 6px #00f8ff);
+    transition: 0.15s;
+}
+.logo:hover {
+    transform: scale(1.05);
+}
+
+nav a {
+    margin: 0 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    transition: 0.25s;
+}
+nav a:hover {
+    color: #00f8ff;
+}
+
+/* Buttons */
+.btn, button {
+    background:#00eaff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.btn:hover, button:hover {
+    background:#00d4d4;
+}
+
+/* HERO */
+.hero {
     text-align:center;
-    padding:6px 10px;
+    padding:130px 20px;
+}
+.hero h1 {
+    font-size:42px;
+    font-weight:900;
+    color:#00f8ff;
+    text-shadow:0 0 20px #00cbe6;
+}
+.hero p {
+    color:#b9e4ff;
+    margin-top:-5px;
+}
+.hero .btn {
+    margin-top:20px;
+}
+
+/* Items Section */
+.section-title {
+    text-align:center;
+    font-size:28px;
+    margin-top:70px;
+    color:#e1faff;
+    text-shadow:0 0 8px #0088aa;
+}
+
+.item-boxes {
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:40px;
+    flex-wrap:wrap;
+}
+.item-card {
+    background:#03212c;
+    width:260px;
+    border-radius:15px;
+    padding:20px;
+    text-align:left;
+    border:1px solid #03576d;
+    transition:0.2s;
+}
+.item-card:hover {
+    transform:translateY(-4px);
+    box-shadow:0 0 20px #00d8ff65;
+}
+.item-card h3 {
+    margin-bottom:8px;
+}
+
+/* How It Works */
+.how {
+    padding:60px 20px;
+    text-align:center;
+}
+.how-boxes {
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+.how-card {
+    background:#021a24;
+    padding:25px;
+    width:260px;
+    border-radius:12px;
+    border:1px solid #034757;
+    text-align:left;
+    transition:0.2s;
+}
+.how-card:hover {
+    box-shadow:0 0 18px #00eaff4d;
+}
+
+/* Footer */
+footer {
+    text-align:center;
+    padding:30px;
+    color:#9bd8ff;
     font-size:14px;
-    color:var(--muted);
-    z-index:30;
-    pointer-events:none;
-  }
-  .discord-top a{
-    pointer-events:auto;
-    color:var(--cyan);
-    text-decoration:none;
-    font-weight:700;
-    transition:filter .2s, text-shadow .2s;
-  }
-  .discord-top a:hover{ text-shadow:0 0 10px var(--cyan); filter:brightness(1.15); }
-  .discord-top small{ display:block; color:#89ccff; margin-top:2px; }
-
-  /* Header */
-  header{
-    position:sticky; top:22px; /* sits just below the banner */
-    z-index:20;
-    padding:14px 28px;
-    display:flex; align-items:center; gap:18px;
-    background:rgba(8,25,40,.55);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,.06);
-  }
-  .logo{display:flex; align-items:center; gap:10px}
-  .logo img{
-    height:62px;
-    transition:transform .25s, filter .25s;
-    filter:drop-shadow(0 0 6px rgba(0,234,255,.35)); /* subtle by default */
-  }
-  .logo img:hover{
-    transform:scale(1.04);
-    filter:drop-shadow(0 0 10px rgba(0,234,255,.55));
-  }
-
-  nav{margin-left:auto; display:flex; align-items:center; gap:18px;}
-  nav a{
-    color:var(--text); text-decoration:none; font-weight:600; opacity:.9;
-    padding:6px 10px; border-radius:8px; transition:.2s;
-  }
-  nav a:hover{ color:var(--cyan); text-shadow:0 0 10px var(--cyan); }
-
-  .btn{
-    margin-left:10px;
-    background:var(--cyan);
-    color:#032432;
-    padding:9px 16px; border:none; border-radius:12px; font-weight:800; cursor:pointer;
-    transition:transform .15s, box-shadow .2s, filter .15s;
-  }
-  .btn:hover{ transform:translateY(-1px); box-shadow:0 0 18px rgba(0,234,255,.35); filter:brightness(1.05); }
-
-  /* Hero */
-  .hero{
-    padding:120px 16px 30px;
-    text-align:center;
-    max-width:1100px; margin:0 auto;
-  }
-  .hero h1{
-    margin:40px 0 10px;
-    font-size:48px; line-height:1.1; letter-spacing:.3px;
-    color:var(--cyan); text-shadow:0 0 18px var(--cyan);
-  }
-  .hero p{ color:var(--muted); margin:8px 0 20px; }
-  .hero .cta{
-    display:inline-block; margin-top:8px;
-    background:linear-gradient(90deg,var(--cyan),var(--cyan-d));
-    color:#032432; padding:12px 26px; border-radius:28px; font-weight:800; text-decoration:none;
-    transition:transform .15s, box-shadow .2s;
-  }
-  .hero .cta:hover{ transform:translateY(-1px); box-shadow:0 0 20px rgba(0,234,255,.35); }
-
-  /* Sections */
-  .section{ padding:40px 18px 90px; max-width:1200px; margin:0 auto; }
-  .section h2{ text-align:center; font-size:26px; margin:8px 0 22px; }
-
-  /* Featured Items grid */
-  .grid{
-    display:grid; gap:22px; grid-template-columns:repeat(3,minmax(0,1fr));
-  }
-  .card{
-    background:var(--card);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:18px; padding:22px;
-    transition:transform .2s, box-shadow .2s, border-color .2s;
-  }
-  .card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 10px 30px rgba(0, 234, 255, .18);
-    border-color:rgba(0,234,255,.35);
-  }
-  .card h3{ margin:0 0 12px; }
-  .buy{
-    background:var(--cyan); color:#032432; font-weight:800;
-    border:none; padding:8px 16px; border-radius:999px; cursor:pointer;
-    transition:box-shadow .2s, transform .15s;
-  }
-  .buy:hover{ box-shadow:0 0 18px rgba(0,234,255,.35); transform:translateY(-1px); }
-
-  /* Contact */
-  #contact p{ text-align:center; color:var(--muted); }
-  #contact a{ color:var(--cyan); text-decoration:none; font-weight:700; }
-  #contact a:hover{ text-shadow:0 0 10px var(--cyan); }
-
-  /* Footer */
-  footer{ text-align:center; padding:22px; color:#8fbfd6; border-top:1px solid rgba(255,255,255,.06); background:#071c2b; }
-
-  /* Mobile */
-  @media (max-width:900px){
-    .hero h1{font-size:38px}
-    .grid{grid-template-columns:1fr}
-    .logo img{height:54px}
-    header{padding:12px 16px}
-  }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Top Discord strip -->
-<div class="discord-top">
-  <a href="https://discord.gg/MzJtd5eTdC" target="_blank" rel="noopener">Join our Discord Server</a>
-  <small>Giveaways everyday</small>
+<!-- Top Discord link -->
+<div style="text-align:center;padding:5px;color:#00eaff;font-size:13px;">
+    <a href="https://discord.gg/MzJtdSefcD" target="_blank" style="color:#00eaff;text-decoration:none;">Join our Discord Server</a><br>
+    <small>Giveaways everyday 💎</small>
 </div>
 
 <header>
-  <div class="logo">
-    <img src="logo.png" alt="Itemora Logo">
-  </div>
-
-  <!-- Right-side nav like before -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Contact</a>
-    <button id="authBtn" class="btn">Loading...</button>
-  </nav>
+    <div class="logo" onclick="scrollToTop()">ITEMORA</div>
+    
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact</a>
+        <button id="authBtn" onclick="location.href='login.html'">Loading...</button>
+    </nav>
 </header>
 
-<!-- HERO -->
 <section id="home" class="hero">
-  <h1>Welcome to Itemora</h1>
-  <p>Your trusted marketplace for in-game items.</p>
-  <a href="#shop" class="cta">Explore Shop</a>
+    <h1>Upgrade Your Gaming Journey Instantly ⚡</h1>
+    <p>Fast, secure, and trusted in-game items.</p>
+    <button class="btn" onclick="location.href='#shop'">Explore Games</button>
 </section>
 
-<!-- FEATURED -->
-<section id="shop" class="section">
-  <h2>Featured Items</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>Epic Sword</h3>
-      <p>Powerful blade with unmatched sharpness.</p>
-      <button class="buy">Buy</button>
-    </article>
-    <article class="card">
-      <h3>Golden Armor</h3>
-      <p>Legendary protection for elite players.</p>
-      <button class="buy">Buy</button>
-    </article>
-    <article class="card">
-      <h3>Magic Potion</h3>
-      <p>Instant boost to your energy.</p>
-      <button class="buy">Buy</button>
-    </article>
-  </div>
+<h2 class="section-title">Popular Items</h2>
+<div class="item-boxes">
+    <div class="item-card">
+        <h3>Epic Sword</h3>
+        <p>Unmatched sharpness, elite power.</p>
+        <button>Buy</button>
+    </div>
+    
+    <div class="item-card">
+        <h3>Golden Armor</h3>
+        <p>Legendary protection for elite players.</p>
+        <button>Buy</button>
+    </div>
+    
+    <div class="item-card">
+        <h3>Magic Potion</h3>
+        <p>Boost your energy instantly.</p>
+        <button>Buy</button>
+    </div>
+</div>
+
+<!-- How Itemora Works -->
+<h2 class="section-title">How Itemora Works</h2>
+<section class="how">
+<div class="how-boxes">
+
+<div class="how-card">
+    <h3>🎮 Choose Game</h3>
+    <p>Select your game from our marketplace.</p>
+</div>
+
+<div class="how-card">
+    <h3>⚡ Fast Delivery</h3>
+    <p>Receive your items within minutes — automated delivery.</p>
+</div>
+
+<div class="how-card">
+    <h3>🔐 Secure Payments</h3>
+    <p>Safe global payment gateways & fraud protection.</p>
+</div>
+
+<div class="how-card">
+    <h3>💬 24/7 Support</h3>
+    <p>Our Discord team is always here to help you.</p>
+</div>
+
+</div>
 </section>
 
-<!-- CONTACT (works) -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>
-    Discord: <a href="https://discord.gg/MzJtd5eTdC" target="_blank" rel="noopener">Our Discord</a> <br/>
-    Email: itemora.support@example.com
-  </p>
+<section id="contact" style="text-align:center;margin:40px 0;">
+    <h2 class="section-title">Contact</h2>
+    <p>Email: itemora.support@example.com</p>
 </section>
 
 <footer>© 2025 Itemora</footer>
 
+<!-- ✅ Firebase Auth Status Script -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -222,32 +250,27 @@ const firebaseConfig = {
   appId: "1:25090028733:web:2acf74043aae85b3bbf3d4",
   measurementId: "G-HCHGBL8CPN"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ✅ Nav button
-const authBtn = document.getElementById("authBtn");
+const btn = document.getElementById("authBtn");
 
-// ✅ Check login state
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        authBtn.innerText = "Logout";
-        authBtn.onclick = () => {
-            signOut(auth).then(() => {
-                alert("✅ Logged out!");
-                location.reload();
-            });
-        };
+onAuthStateChanged(auth, user=>{
+    if(user) {
+        btn.textContent = "Logout";
+        btn.onclick = ()=>{ signOut(auth); alert("Logged out!"); location.reload();}
     } else {
-        authBtn.innerText = "Sign In";
-        authBtn.onclick = () => {
-            window.location.href = "login.html";
-        };
+        btn.textContent = "Sign In";
+        btn.onclick = ()=> location.href="login.html";
     }
 });
 </script>
 
+<script>
+function scrollToTop(){
+    window.scrollTo({ top:0, behavior:"smooth" });
+}
+</script>
 
 </body>
 </html>
