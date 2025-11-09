@@ -1,185 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Itemora - In-Game Marketplace</title>
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
-/* ---------- GLOBAL ----------- */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #001b26;
-  color: white;
-  scroll-behavior: smooth;
+/* ---------------- GLOBAL ---------------- */
+:root{
+  --teal:#00eaff;
+  --ink:#001b26;
+  --panel:rgba(255,255,255,.06);
+  --panel-b:#03222d;
+}
+*{box-sizing:border-box}
+html,body{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#001b26;            /* keep simple bg; we can swap to image later */
+  color:#fff;
 }
 
-a { text-decoration: none; color: white; }
-
-.discord-top {
-  background: #002837;
-  text-align: center;
-  padding: 6px;
-  font-size: 14px;
-  color: #bfeeff;
+/* Discord strip */
+.discord-top{
+  background:#002837;
+  text-align:center;
+  padding:6px 8px;
+  font-size:14px;
 }
-.discord-top a {
-  font-weight: bold;
-  color: #00eaff;
-  text-shadow: 0 0 6px #00eaff;
+.discord-top a{
+  color:var(--teal);
+  font-weight:700;
+  text-decoration:none;
+  transition:.2s;
 }
+.discord-top a:hover{ filter:drop-shadow(0 0 8px var(--teal)); }
 
-/* ---------- HEADER ----------- */
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
+/* ---------------- HEADER ---------------- */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 40px;
 }
-
-.logo img {
-  width: 120px;
-  cursor: pointer;
-  filter: drop-shadow(0 0 10px #00eaffbd);
-  transition: 0.2s;
+.logo img{
+  width:120px;
+  cursor:pointer;
+  filter:drop-shadow(0 0 8px rgba(0,234,255,.6));
+  transition:.2s;
 }
-.logo img:hover { filter: drop-shadow(0 0 18px #00eaff); }
+.logo img:hover{ filter:drop-shadow(0 0 14px var(--teal)); transform:translateY(-1px); }
 
-nav a {
-  margin: 0 15px;
-  font-weight: 600;
+nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
-
-.btn {
-  background: #00eaff;
-  padding: 8px 22px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  color: black;
-  text-shadow: 0 0 6px #00eaff;
-  box-shadow: 0 0 10px #00eaff;
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:6px 2px;
+  transition:.18s ease;
 }
-.btn:hover { box-shadow: 0 0 18px #00eaff; }
-
-/* ---------- HERO ----------- */
-
-.hero {
-  text-align: center;
-  padding: 120px 20px 60px;
+nav a:hover{
+  color:var(--teal);
+  text-shadow:0 0 8px rgba(0,234,255,.8);
+  transform:translateY(-1px);
 }
 
-.main-title {
-  font-size: 42px;
-  font-weight: bold;
-  color: #00eaff;
-  text-shadow: 0 0 18px #00eaff;
+/* buttons */
+.btn{
+  background:var(--teal);
+  color:#002026;
+  border:none;
+  border-radius:22px;
+  padding:9px 20px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s ease;
+  box-shadow:0 0 10px rgba(0,234,255,.55);
+}
+.btn:hover{
+  box-shadow:0 0 20px rgba(0,234,255,.9);
+  transform:translateY(-1px);
 }
 
-.tagline {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #c7f7ff;
+/* ---------------- HERO ---------------- */
+.hero{
+  text-align:center;
+  padding:110px 20px 70px;
+}
+.main-title{
+  font-size:42px;
+  color:var(--teal);
+  text-shadow:0 0 16px rgba(0,234,255,.75);
+  margin:0 0 8px;
+}
+.tagline{
+  color:#c7f7ff;
+  opacity:.95;
+  margin:0 0 20px;
+}
+.cta{
+  display:inline-block;
+  background:var(--teal);
+  color:#002026;
+  padding:12px 28px;
+  border-radius:30px;
+  font-weight:800;
+  text-decoration:none;
+  transition:.2s;
+  box-shadow:0 0 14px rgba(0,234,255,.7);
+}
+.cta:hover{
+  box-shadow:0 0 26px rgba(0,234,255,1);
+  transform:translateY(-1px);
 }
 
-.cta {
-  display: inline-block;
-  background: #00eaff;
-  padding: 12px 28px;
-  border-radius: 30px;
-  margin-top: 20px;
-  font-weight: bold;
-  color: black;
-  text-shadow: 0 0 6px #00eaff;
-  box-shadow: 0 0 15px #00eaff;
+/* ---------------- SECTIONS ---------------- */
+.section{
+  padding:60px 20px;
+  text-align:center;
 }
-.cta:hover { box-shadow: 0 0 26px #00eaff; }
-
-/* ---------- SECTIONS ----------- */
-
-.section {
-  text-align: center;
-  padding: 60px 20px;
+.section-title{
+  font-size:30px;
+  margin:0 0 24px;
 }
+.dim-glow{ text-shadow:0 0 4px rgba(0,234,255,.5); } /* reduced static glow */
 
-.section-title {
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 25px;
+/* ---------------- ITEMS ---------------- */
+.item-grid{
+  display:flex;
+  gap:22px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
-
-.dim-glow {
-  text-shadow: 0 0 4px #00eaff80;
+.item-box{
+  width:280px;
+  background:var(--panel);
+  border:1px solid rgba(0,234,255,.18);
+  border-radius:14px;
+  padding:22px;
+  text-align:left;
+  transition:.22s ease;
 }
-
-/* ---------- ITEM BOXES ----------- */
-
-.item-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.item-box h3{ margin:0 0 6px; }
+.item-box p{ margin:0 0 12px; color:#cfefff; }
+.item-box:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 22px rgba(0,234,255,.45);
 }
-
-.item-box {
-  width: 280px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(6px);
-  border-radius: 14px;
-  padding: 25px;
-  text-align: center;
+.buy-btn{
+  background:var(--teal);
+  color:#002026;
+  border:none;
+  border-radius:20px;
+  padding:8px 18px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.18s;
+  box-shadow:0 0 10px rgba(0,234,255,.55);
 }
+.buy-btn:hover{ box-shadow:0 0 18px rgba(0,234,255,.95); }
 
-.buy-btn {
-  background: #00eaff;
-  padding: 9px 22px;
-  border-radius: 22px;
-  border: none;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  text-shadow: 0 0 6px #00eaff;
+/* ---------------- HOW IT WORKS ---------------- */
+.steps-grid{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
-.buy-btn:hover { box-shadow: 0 0 20px #00eaff; }
-
-/* ---------- HOW IT WORKS ----------- */
-
-.steps-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.step-card{
+  width:240px;
+  background:var(--panel);
+  border:1px solid rgba(0,234,255,.15);
+  border-radius:12px;
+  padding:18px;
+  text-align:left;
+  transition:.2s;
+}
+.step-card:hover{
+  box-shadow:0 0 18px rgba(0,234,255,.35);
+  transform:translateY(-3px);
 }
 
-.step-card {
-  width: 240px;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
+/* ---------------- CONTACT/FOOTER ---------------- */
+footer{
+  text-align:center;
+  padding:24px;
+  color:#8bccde;
+  font-size:14px;
 }
-
-/* ---------- FOOTER ----------- */
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #88bccc;
-  font-size: 14px;
-}
-
 </style>
 </head>
 <body>
 
 <!-- Discord Banner -->
 <div class="discord-top">
-  <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank">Join our Discord Server</a><br>
+  <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank" rel="noopener">Join our Discord Server</a><br>
   <small>Giveaways everyday 🎉</small>
 </div>
 
@@ -229,15 +250,27 @@ footer {
   </div>
 </section>
 
-<!-- HOW ITEMORA WORKS -->
+<!-- HOW IT WORKS -->
 <section id="how" class="section">
   <h2 class="section-title dim-glow">How Itemora Works</h2>
 
   <div class="steps-grid">
-    <div class="step-card"><h3>🎮 Choose Game</h3><p>Select your game & item.</p></div>
-    <div class="step-card"><h3>⚡ Instant Delivery</h3><p>Fast, smooth delivery.</p></div>
-    <div class="step-card"><h3>🔐 Secure Payments</h3><p>Safe verified checkout.</p></div>
-    <div class="step-card"><h3>💬 Support</h3><p>We assist anytime.</p></div>
+    <div class="step-card">
+      <h3>🎮 Choose Your Game</h3>
+      <p>Select the game & item you want.</p>
+    </div>
+    <div class="step-card">
+      <h3>⚡ Instant Delivery</h3>
+      <p>Fast, reliable delivery after purchase.</p>
+    </div>
+    <div class="step-card">
+      <h3>🔐 Secure Payments</h3>
+      <p>Protected checkout & verified sellers.</p>
+    </div>
+    <div class="step-card">
+      <h3>💬 24/7 Support</h3>
+      <p>Friendly help on Discord anytime.</p>
+    </div>
   </div>
 </section>
 
@@ -249,7 +282,7 @@ footer {
 
 <footer>© 2025 Itemora</footer>
 
-<!-- ✅ FIREBASE AUTH -->
+<!-- -------------- FIREBASE AUTH -------------- -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -272,7 +305,17 @@ const authBtn = document.getElementById("authBtn");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     authBtn.textContent = "Logout";
-    authBtn.onclick = () => signOut(auth);
+    authBtn.onclick = async () => {
+      const ok = confirm("Are you sure you want to log out?");
+      if (!ok) return;
+      try {
+        await signOut(auth);
+        alert("Logged out successfully.");
+        location.reload();
+      } catch (e) {
+        alert("Error logging out. Try again.");
+      }
+    };
   } else {
     authBtn.textContent = "Sign In";
     authBtn.onclick = () => location.href = "login.html";
