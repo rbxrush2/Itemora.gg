@@ -7,29 +7,47 @@
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
-/* Fade-in page animation */
-body {
-    opacity: 0;
-    animation: fadeInPage 1s ease forwards;
+<script>
+const textArray = [
+  "🌟 Buy Your Favorite Items Here!"
+];
+
+let index = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingElement = document.getElementById("typing");
+
+function typeEffect() {
+    const currentText = textArray[index];
+
+    if (!isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex);
+        charIndex++;
+
+        if (charIndex > currentText.length) {
+            setTimeout(() => { isDeleting = true; }, 1800);
+        }
+    } 
+    
+    else {
+        typingElement.textContent = currentText.substring(0, charIndex);
+        charIndex--;
+
+        if (charIndex === 0) {
+            isDeleting = false;
+            index = (index + 1) % textArray.length;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 40 : 70);
 }
 
-@keyframes fadeInPage {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+document.addEventListener("DOMContentLoaded", () => {
+    typingElement.textContent = "";
+    setTimeout(typeEffect, 300);
+});
+</script>
 
-/* Typing cursor */
-#typing {
-    border-right: 3px solid #0aefff;
-    padding-right: 5px;
-    animation: blinkCursor .7s infinite;
-}
-
-@keyframes blinkCursor {
-    0% { border-color: transparent; }
-    50% { border-color: #0aefff; }
-    100% { border-color: transparent; }
-}
 
 /* ✅ Animated premium background */
 body::before {
@@ -288,9 +306,7 @@ footer{
   <h1 class="main-title">
    <span id="typing"></span>
 </h1>
-<p class="tagline">🌟Buy Your Favorite Items Here!</p>
-
-  <p class="tagline">Fast delivery. Secure checkout. Smooth experience.</p>
+ <p class="tagline">Fast delivery. Secure checkout. Smooth experience.</p>
   <a href="explore.html" class="cta">Explore Games</a>
 </section>
 
