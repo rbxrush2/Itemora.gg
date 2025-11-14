@@ -7,6 +7,30 @@
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
+/* Fade-in page animation */
+body {
+    opacity: 0;
+    animation: fadeInPage 1s ease forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Typing cursor */
+#typing {
+    border-right: 3px solid #0aefff;
+    padding-right: 5px;
+    animation: blinkCursor .7s infinite;
+}
+
+@keyframes blinkCursor {
+    0% { border-color: transparent; }
+    50% { border-color: #0aefff; }
+    100% { border-color: transparent; }
+}
+
 /* ✅ Animated premium background */
 body::before {
     content: "";
