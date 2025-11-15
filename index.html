@@ -3,35 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fast, Safe, Secure- Instant Delivery</title>
+<title>Itemora – Fast, Safe, Secure</title>
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
-/* Fade-in page animation */
-body {
-    opacity: 0;
-    animation: fadeInPage 1s ease forwards;
-}
-
-@keyframes fadeInPage {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Typing cursor */
-#typing {
-    border-right: 3px solid #0aefff;
-    padding-right: 5px;
-    animation: blinkCursor .7s infinite;
-}
-
-@keyframes blinkCursor {
-    0% { border-color: transparent; }
-    50% { border-color: #0aefff; }
-    100% { border-color: transparent; }
-}
-
-/* ✅ Animated premium background */
+/* -----------------------------------------------------------
+   PREMIUM ANIMATED BACKGROUND  
+----------------------------------------------------------- */
 body::before {
     content: "";
     position: fixed;
@@ -42,228 +20,239 @@ body::before {
     pointer-events: none;
 
     background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.18), transparent 55%),
-            radial-gradient(circle at 80% 70%, rgba(122, 64, 255, 0.18), transparent 55%),
-            radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.10), transparent 70%),
-            #02121F;
-
+                radial-gradient(circle at 80% 70%, rgba(122, 64, 255, 0.18), transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.10), transparent 70%),
+                #02121F;
 
     animation: bgFloat 12s ease-in-out infinite alternate;
     filter: blur(40px);
 }
-
 @keyframes bgFloat {
-    0% {
-        background-position: 0% 0%, 100% 100%, 50% 50%;
-        transform: scale(1);
-    }
-    100% {
-        background-position: 10% 5%, 90% 95%, 48% 52%;
-        transform: scale(1.05);
-    }
+    0% { background-position: 0% 0%, 100% 100%, 50% 50%; transform: scale(1); }
+    100% { background-position: 10% 5%, 90% 95%, 48% 52%; transform: scale(1.05); }
 }
 
-/* ---------------- GLOBAL ---------------- */
-:root{
-  --teal:#00eaff;
-}
-*{box-sizing:border-box}
-html,body{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#001b26;
-  color:white;
+/* -----------------------------------------------------------
+   GLOBAL
+----------------------------------------------------------- */
+:root {
+  --teal: #00eaff;
 }
 
-/* ---------------- TOP BANNER ---------------- */
-.discord-top{
-  background:#002837;
-  text-align:center;
-  padding:6px 8px;
-  font-size:14px;
-}
-.discord-top a{
-  color:var(--teal);
-  font-weight:bold;
-  text-decoration:none;
-  text-shadow:0 0 6px var(--teal);
-  transition:.2s;
-}
-.discord-top a:hover{
-  filter:drop-shadow(0 0 10px var(--teal));
+* { box-sizing: border-box; }
+html, body { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #001b26;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
 }
 
-/* ---------------- HEADER ---------------- */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 40px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.logo img{
-  width:120px;
-  cursor:pointer;
-  transition:.25s ease;
+/* -----------------------------------------------------------
+   TOP DISCORD BANNER
+----------------------------------------------------------- */
+.discord-top {
+  background: #002837;
+  text-align: center;
+  padding: 6px 8px;
+  font-size: 14px;
 }
-.logo img:hover{
-  transform:scale(1.06);
-  filter:drop-shadow(0 0 15px var(--teal));
+.discord-top a {
+  color: var(--teal);
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 0 6px var(--teal);
+  transition: 0.2s;
 }
-
-nav a{
-  margin:0 12px;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  transition:.2s;
-}
-nav a:hover{
-  color:var(--teal);
-  transform:scale(1.08);
-  text-shadow:0 0 12px var(--teal);
+.discord-top a:hover {
+  filter: drop-shadow(0 0 10px var(--teal));
 }
 
-/* ---------------- BUTTONS ---------------- */
-.btn{
-  background:var(--teal);
-  border:none;
-  padding:9px 22px;
-  border-radius:20px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.2s ease;
-  color:black;
-}
-.btn:hover{
-  transform:scale(1.07);
-  box-shadow:0 0 16px var(--teal);
+/* -----------------------------------------------------------
+   HEADER
+----------------------------------------------------------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
 }
 
-/* ---------------- HERO ---------------- */
-.hero{
-  text-align:center;
-  padding:120px 20px 70px;
+.logo img {
+  width: 120px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+.logo img:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 15px var(--teal));
 }
 
-.main-title{
-  font-size:42px;
-  font-weight:900;
-  color:var(--teal);
-  text-shadow:0 0 16px rgba(0,234,255,.7);
+nav a {
+  margin: 0 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+nav a:hover {
+  color: var(--teal);
+  transform: scale(1.08);
+  text-shadow: 0 0 12px var(--teal);
 }
 
-.tagline{
-  font-size:18px;
-  color:#c7f7ff;
-  margin-bottom:22px;
-  opacity:0.9;
+.btn {
+  background: var(--teal);
+  border: none;
+  padding: 9px 22px;
+  border-radius: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: black;
+}
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 16px var(--teal);
 }
 
-/* CTA button (Explore Games) */
-.cta{
-  display:inline-block;
-  background:var(--teal);
-  padding:12px 28px;
-  border-radius:30px;
-  color:black;
-  font-weight:800;
-  text-decoration:none;
-  transition:.25s ease;
-}
-.cta:hover{
-  box-shadow:0 0 22px var(--teal);
-  transform:scale(1.07);
+/* -----------------------------------------------------------
+   HERO SECTION
+----------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding: 120px 20px 70px;
 }
 
-/* ---------------- SECTION ---------------- */
-.section{ text-align:center; padding:60px 20px; }
-.section-title{
-  font-size:30px;
-  margin-bottom:24px;
-  color:#e3faff;
+.main-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--teal);
+  text-shadow: 0 0 14px rgba(0,234,255,.65);
 }
 
-/* ---------------- ITEMS ---------------- */
-.item-grid{
-  display:flex;
-  gap:24px;
-  justify-content:center;
-  flex-wrap:wrap;
+.tagline {
+  font-size: 18px;
+  color: #c7f7ff;
+  margin-bottom: 22px;
+  opacity: 0.9;
 }
 
-.item-box{
-  width:270px;
-  background:rgba(255,255,255,0.05); /* slight transparent glass */
-  padding:22px;
-  border-radius:14px;
-  border:1px solid rgba(0,234,255,.3);
-  transition:.25s ease;
-  backdrop-filter: blur(6px); /* glass effect */
-  box-shadow:0 0 10px rgba(0,234,255,0.12) inset;
+.cta {
+  display: inline-block;
+  background: var(--teal);
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: black;
+  font-weight: 800;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+.cta:hover {
+  box-shadow: 0 0 22px var(--teal);
+  transform: scale(1.07);
 }
 
-.item-box:hover{
-  transform:scale(1.06);
-  box-shadow:
-    0 0 18px rgba(0,234,255,.5),
-    0 0 10px rgba(0,234,255,.4) inset;
-  border-color:rgba(0,234,255,.8);
+/* -----------------------------------------------------------
+   SECTIONS
+----------------------------------------------------------- */
+.section {
+  text-align: center;
+  padding: 60px 20px;
 }
 
-.item-box h3{ margin:0 0 6px; }
-
-/* buy button */
-.buy-btn{
-  background:var(--teal);
-  border:none;
-  padding:9px 18px;
-  border-radius:16px;
-  font-weight:800;
-  cursor:pointer;
-  color:black;
-  transition:.2s ease;
-}
-.buy-btn:hover{
-  transform:scale(1.07);
-  box-shadow:0 0 20px var(--teal);
+.section-title {
+  font-size: 30px;
+  margin-bottom: 24px;
+  color: #e3faff;
 }
 
-/* ---------------- HOW IT WORKS ---------------- */
-.steps-grid{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
+/* -----------------------------------------------------------
+   ITEM CARDS
+----------------------------------------------------------- */
+.item-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.step-card{
-  width:240px;
-  background:rgba(0,0,0,.25);
-  padding:18px;
-  border-radius:12px;
-  border:1px solid rgba(0,234,255,.35);
-  text-align:left;
-  transition:.25s ease;
+.item-box {
+  width: 270px;
+  background: rgba(255,255,255,0.05);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,234,255,.3);
+  transition: 0.25s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(0,234,255,0.12) inset;
 }
-.step-card:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 20px rgba(0,234,255,.45);
+.item-box:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(0,234,255,.5), 0 0 10px rgba(0,234,255,.4) inset;
+  border-color: rgba(0,234,255,.8);
 }
 
-/* ---------------- FOOTER ---------------- */
-footer{
-  text-align:center;
-  padding:24px;
-  color:#8bccde;
-  font-size:14px;
+.buy-btn {
+  background: var(--teal);
+  border: none;
+  padding: 9px 18px;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  color: black;
+  transition: 0.2s ease;
+}
+.buy-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px var(--teal);
+}
+
+/* -----------------------------------------------------------
+   HOW IT WORKS
+----------------------------------------------------------- */
+.steps-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.step-card {
+  width: 240px;
+  background: rgba(0,0,0,.25);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,234,255,.35);
+  text-align: left;
+  transition: 0.25s ease;
+}
+.step-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,234,255,.45);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #8bccde;
+  font-size: 14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Discord -->
+<!-- Discord Banner -->
 <div class="discord-top">
   <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank">Join our Discord Server</a><br>
   <small>Giveaways everyday 🎉</small>
@@ -285,12 +274,11 @@ footer{
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <h1 class="main-title">
-   <span id="typing"></span>
-</h1>
-<p class="tagline">🌟Buy Your Favorite Items Here!</p>
+  <h1 class="main-title">Your Go-To Marketplace For Digital Goods</h1>
 
+  <p class="tagline">🌟 Buy Your Favorite Items Here!</p>
   <p class="tagline">Fast delivery. Secure checkout. Smooth experience.</p>
+
   <a href="explore.html" class="cta">Explore Games</a>
 </section>
 
@@ -339,7 +327,7 @@ footer{
 
 <footer>© 2025 Itemora</footer>
 
-<!-- ---------------- FIREBASE ---------------- -->
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -362,52 +350,12 @@ onAuthStateChanged(auth, user => {
   if (user) {
     btn.textContent = "Logout";
     btn.onclick = () => {
-      if(confirm("Log out from Itemora?")) {
-        signOut(auth);
-      }
+      if (confirm("Log out from Itemora?")) signOut(auth);
     };
   } else {
     btn.textContent = "Sign In";
-    btn.onclick = () => location.href="login.html";
+    btn.onclick = () => location.href = "login.html";
   }
-});
-</script>
-
-<script>
-const textArray = [
-  "Trusted Digital Marketplace For Gamers",
-  "Fast & Secure In-Game Item Checkout",
-  "Your Go-To Marketplace For Digital Goods"
-];
-
-let index = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typingElement = document.getElementById("typing");
-
-function typeEffect() {
-    const currentText = textArray[index];
-
-    if (!isDeleting) {
-        typingElement.textContent = currentText.slice(0, charIndex++);
-        if (charIndex > currentText.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 2000); 
-            return;
-        }
-    } else {
-        typingElement.textContent = currentText.slice(0, charIndex--);
-        if (charIndex < 0) {
-            isDeleting = false;
-            index = (index + 1) % textArray.length;
-        }
-    }
-
-    setTimeout(typeEffect, isDeleting ? 40 : 60);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(typeEffect, 500);
 });
 </script>
 
