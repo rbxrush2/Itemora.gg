@@ -13,6 +13,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* Floating animation for item previews */
+.floating-item {
+    position: absolute;
+    top: 180px; /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px; /* resize depending on your image */
+    opacity: 0.9;
+    animation: floatItem 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(0, 234, 255, 0.25));
+    pointer-events: none; /* makes it not clickable */
+}
+
+@keyframes floatItem {
+    0% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+    50% { transform: translateX(-50%) translateY(-18px) rotate(2deg); }
+    100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+}
+
+
 /* Fade-in animation */
 body {
     opacity: 0;
@@ -308,13 +329,18 @@ footer{
 
 <!-- HERO -->
 <section id="home" class="hero">
+
+  <img src="tralalero.png" class="floating-item">
+
   <h1 class="main-title">
-   <span id="typing"></span>
-</h1>
-<p class="tagline">All Your Favourite Games Available</p>
-<p class="tagline">Fast delivery. Secure checkout.</p>
-<a href="explore.html" class="cta">Explore Games</a>
+      <span id="typing"></span>
+  </h1>
+  <p class="tagline">All Your Favourite Games Available</p>
+  <p class="tagline">Fast delivery. Secure checkout.</p>
+  <a href="explore.html" class="cta">Explore Games</a>
+
 </section>
+
 
 <!-- POPULAR ITEMS -->
 <section id="shop" class="section">
