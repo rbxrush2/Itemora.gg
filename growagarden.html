@@ -1,206 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grow A Garden Items</title>
-<link rel="icon" type="image/png" href="logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Grow a Garden Items - Itemora</title>
+  <link rel="icon" type="image/png" href="logo.png">
 
-<!-- FONT AWESOME -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- FONT AWESOME ICONS -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- POPPINS FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #02121F;
-    color: white;
-}
+  <style>
+    /* ---------- GLOBAL + BACKGROUND ---------- */
+    * { box-sizing:border-box; }
 
-/* HEADER */
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 30px;
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
+    body {
+      margin:0;
+      font-family:'Poppins', sans-serif;
+      color:#f5fcff;
+      background:#001b26;
+      opacity:0;
+      animation:fadeInPage 0.8s ease forwards;
+    }
 
-.back-btn {
-    color: #00eaff;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 16px;
-}
-.back-btn:hover { opacity: 0.7; }
+    @keyframes fadeInPage {
+      from { opacity:0; }
+      to   { opacity:1; }
+    }
 
-.cart-icon {
-    position: relative;
-    font-size: 22px;
-    cursor: pointer;
-    color: white;
-}
-.cart-icon .indicator {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 10px;
-    height: 10px;
-    background: red;
-    border-radius: 50%;
-    display: none; /* JS will show */
-}
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,242,255,0.16), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(122,64,255,0.16), transparent 55%),
+        #02121F;
+      filter:blur(45px);
+      animation:bgFloat 14s ease-in-out infinite alternate;
+    }
+    @keyframes bgFloat {
+      0%   { transform:scale(1); }
+      100% { transform:scale(1.05); }
+    }
 
-/* TITLE */
-.page-title {
-    margin: 25px 35px;
-    font-size: 32px;
-    font-weight: 700;
-}
+    :root{
+      --teal:#00eaff;
+      --card-bg:#031724;
+      --accent:#00d27f;
+    }
 
-/* SEARCH BAR */
-.search-box {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 30px;
-}
-.search-box input {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    font-size: 16px;
-}
+    a { color:inherit; text-decoration:none; }
 
-/* ITEM GRID */
-.items-container {
-    width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
-    padding-bottom: 40px;
-}
+    /* ---------- HEADER BAR ---------- */
+    .top-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 26px;
+    }
 
-/* ITEM CARD */
-.item-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 14px;
-    padding: 15px;
-    text-align: center;
-    transition: 0.2s ease;
-}
-.item-card:hover {
-    transform: scale(1.03);
-}
+    .top-left{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
 
-/* SQUARE IMAGE */
-.item-img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: rgba(255,255,255,0.1);
-    border-radius: 12px;
-    overflow: hidden;
-}
-.item-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+    }
+    .logo img{
+      width:90px;
+      display:block;
+      transition:transform .2s ease;
+    }
+    .logo img:hover{
+      transform:scale(1.05);
+    }
 
-/* ITEM TITLE */
-.item-card h3 {
-    margin: 12px 0 5px;
-    font-size: 18px;
-}
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      font-size:13px;
+      opacity:0.85;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .back-link:hover{
+      background:rgba(255,255,255,0.05);
+      opacity:1;
+    }
 
-/* PRICE */
-.price-box {
-    margin: 8px 0;
-}
-.old-price {
-    color: #ff6b6b;
-    text-decoration: line-through;
-    font-size: 14px;
-}
-.new-price {
-    color: #00eaff;
-    font-size: 18px;
-    font-weight: 700;
-}
+    .page-title{
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+    .page-subtitle{
+      font-size:13px;
+      opacity:0.85;
+      margin-top:2px;
+    }
 
-/* CART BUTTON */
-.add-cart-btn {
-    margin-top: 10px;
-    background: #00eaff;
-    color: black;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 14px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: 0.15s;
-}
-.add-cart-btn:hover {
-    transform: scale(1.07);
-}
-</style>
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .cart-button{
+      position:relative;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.16);
+      padding:8px 14px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      cursor:pointer;
+      background:rgba(1,15,25,0.7);
+      backdrop-filter:blur(6px);
+      transition:.18s ease;
+    }
+    .cart-button:hover{
+      background:rgba(1,20,33,0.95);
+    }
+    .cart-button i{
+      font-size:15px;
+    }
+
+    .cart-badge{
+      position:absolute;
+      top:-4px;
+      right:-4px;
+      min-width:18px;
+      height:18px;
+      border-radius:999px;
+      background:#ff3b4f;
+      color:#fff;
+      font-size:11px;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+    }
+
+    /* ---------- MAIN CONTENT WRAPPER ---------- */
+    .content{
+      max-width:1200px;
+      margin:0 auto 40px;
+      padding:0 18px 40px;
+    }
+
+    /* ---------- SEARCH BAR ---------- */
+    .search-row{
+      margin-top:10px;
+      margin-bottom:18px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .search-box{
+      position:relative;
+      width:320px;
+      max-width:100%;
+    }
+
+    .search-box input{
+      width:100%;
+      padding:10px 38px 10px 36px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(3,24,38,0.9);
+      color:#e6f9ff;
+      outline:none;
+      font-size:14px;
+      transition:.18s ease;
+    }
+
+    .search-box input:focus{
+      border-color:var(--teal);
+      box-shadow:0 0 0 1px rgba(0,234,255,0.3);
+    }
+
+    .search-box i{
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:14px;
+      color:#7da6b5;
+    }
+
+    /* ---------- ITEM GRID ---------- */
+    .items-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:12px;
+    }
+
+    .item-card{
+      flex:0 1 220px;
+      max-width:230px;
+      background:linear-gradient(180deg,#042234,#020d16);
+      border-radius:16px;
+      border:1px solid rgba(0,234,255,0.18);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      box-shadow:0 10px 22px rgba(0,0,0,0.45);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+    }
+
+    .item-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 32px rgba(0,0,0,0.65);
+      border-color:rgba(0,234,255,0.5);
+    }
+
+    .item-image-wrap{
+      background:radial-gradient(circle at 30% 0%, rgba(255,255,255,0.35), transparent 60%),
+                 #050b14;
+      height:160px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .item-image-wrap img{
+      max-height:90%;
+      max-width:90%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .item-body{
+      padding:12px 14px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-size:13px;
+    }
+
+    .item-name{
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .item-tags{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:#ffda7b;
+      opacity:0.9;
+    }
+
+    .item-desc{
+      font-size:12px;
+      color:#c4e5f5;
+      min-height:32px;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:4px;
+    }
+
+    .price-left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .orig-price{
+      font-size:12px;
+      text-decoration:line-through;
+      color:#9ab4c0;
+    }
+
+    .sale-price{
+      font-size:15px;
+      font-weight:700;
+      color:#7df5b0;
+    }
+
+    .discount-pill{
+      font-size:11px;
+      padding:2px 8px;
+      border-radius:999px;
+      background:rgba(255,88,88,0.18);
+      color:#ffb2b2;
+      border:1px solid rgba(255,80,80,0.48);
+    }
+
+    .card-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:8px 14px 12px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:rgba(0,0,0,0.18);
+    }
+
+    .stock-label{
+      font-size:11px;
+      color:#88e9ff;
+      opacity:0.9;
+    }
+
+    .add-cart-btn{
+      border:none;
+      background:var(--accent);
+      color:#02121F;
+      border-radius:999px;
+      padding:7px 10px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+      transition:.16s ease;
+    }
+    .add-cart-btn i{
+      font-size:13px;
+    }
+    .add-cart-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 8px 16px rgba(0,0,0,0.35);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:700px){
+      .top-bar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+      }
+      .page-title{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="top-bar">
-    <a class="back-btn" href="explore.html"><i class="fa-solid fa-arrow-left"></i> Back</a>
+  <!-- HEADER -->
+  <header class="top-bar">
+    <div class="top-left">
+      <div class="logo" onclick="location.href='index.html'">
+        <img src="logo.png" alt="Itemora logo">
+      </div>
 
-    <div class="cart-icon" onclick="location.href='cart.html'">
+      <div>
+        <div class="back-link" onclick="location.href='explore.html'">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Explore</span>
+        </div>
+        <div class="page-title">Buy GAG Items</div>
+        <div class="page-subtitle">Grow a Garden • Hand-picked premium pets & items</div>
+      </div>
+    </div>
+
+    <div class="top-right">
+      <button class="cart-button" id="cartButton">
         <i class="fa-solid fa-cart-shopping"></i>
-        <div class="indicator" id="cartIndicator"></div>
+        <span>Cart</span>
+        <div class="cart-badge" id="cartBadge">0</div>
+      </button>
     </div>
-</div>
+  </header>
 
-<!-- PAGE TITLE -->
-<div class="page-title">Buy GAG Items</div>
+  <!-- MAIN CONTENT -->
+  <main class="content">
 
-<!-- SEARCH BAR -->
-<div class="search-box">
-    <input type="text" placeholder="Search items...">
-</div>
-
-<!-- ITEMS -->
-<div class="items-container">
-
-    <!-- DRAGONFLY ITEM -->
-    <div class="item-card">
-        <div class="item-img">
-            <img src="df.png" alt="DragonFly">
-        </div>
-
-        <h3>DragonFly</h3>
-
-        <div class="price-box">
-            <span class="old-price">$4.99</span><br>
-            <span class="new-price">$1.49</span>
-        </div>
-
-        <button class="add-cart-btn" onclick="addToCart()">
-            <i class="fa-solid fa-cart-plus"></i> Add to Cart
-        </button>
+    <!-- SEARCH -->
+    <div class="search-row">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="searchInput" type="text" placeholder="Search items by name...">
+      </div>
     </div>
 
-</div>
+    <!-- ITEMS GRID -->
+    <section class="items-grid" id="itemsGrid">
 
-<script>
-function addToCart() {
-    document.getElementById("cartIndicator").style.display = "block";
-}
-</script>
+      <!-- DragonFly card -->
+      <article class="item-card" data-name="dragonfly df dragon fly">
+        <div class="item-image-wrap">
+          <!-- Make sure df.png is in the same folder -->
+          <img src="df.png" alt="DragonFly">
+        </div>
+
+        <div class="item-body">
+          <div class="item-name">DragonFly</div>
+          <div class="item-tags">Mythical • Limited</div>
+          <div class="item-desc">
+            Golden DragonFly pet for Grow a Garden. Perfect for flexing and late-game grinding.
+          </div>
+
+          <div class="price-row">
+            <div class="price-left">
+              <span class="orig-price">$4.99</span>
+              <span class="sale-price">$1.49</span>
+            </div>
+            <span class="discount-pill">-70% OFF</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="stock-label">Instant delivery after trade</span>
+          <button class="add-cart-btn" data-id="dragonfly">
+            <i class="fa-solid fa-cart-plus"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- More items later: just copy the card and change data-id + data-name etc. -->
+
+    </section>
+  </main>
+
+  <!-- ---------- JS: search + localStorage cart badge ---------- -->
+  <script>
+    const CART_KEY = "itemora_cart";
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(CART_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        console.warn("Cart parse error", e);
+        return {};
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function getCartCount(cart) {
+      return Object.values(cart).reduce((sum, q) => sum + q, 0);
+    }
+
+    function updateCartBadge() {
+      const cart = loadCart();
+      const count = getCartCount(cart);
+      const badge = document.getElementById("cartBadge");
+      if (!badge) return;
+
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = "flex";
+      } else {
+        badge.style.display = "none";
+      }
+    }
+
+    // Add to cart buttons
+    document.querySelectorAll(".add-cart-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+        if (!id) return;
+
+        const cart = loadCart();
+        cart[id] = (cart[id] || 0) + 1;
+        saveCart(cart);
+        updateCartBadge();
+      });
+    });
+
+    // Cart button (you can change this to your real cart page later)
+    const cartButton = document.getElementById("cartButton");
+    if (cartButton) {
+      cartButton.addEventListener("click", () => {
+        // Placeholder – later you can redirect to cart.html
+        alert("Cart page coming soon. Items are already saved in your browser.");
+      });
+    }
+
+    // Live search
+    const searchInput = document.getElementById("searchInput");
+    const itemCards = document.querySelectorAll(".item-card");
+
+    if (searchInput) {
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim().toLowerCase();
+
+        itemCards.forEach(card => {
+          const name = (card.dataset.name || "").toLowerCase();
+          card.style.display = name.includes(query) ? "flex" : "none";
+        });
+      });
+    }
+
+    // Initial badge state
+    updateCartBadge();
+  </script>
 
 </body>
 </html>
