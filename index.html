@@ -12,23 +12,26 @@
 <style>
 :root{
   --teal:#00eaff;
+  --donut:#ffb36b;
   --bg:#001218;
-  --card:rgba(255,255,255,.04);
+  --glass:rgba(255,255,255,.06);
 }
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
   background:var(--bg);
   color:#eaf6fb;
 }
+
 body::before{
   content:"";
   position:fixed; inset:0;
   z-index:-1;
   background:
     radial-gradient(circle at 20% 25%, rgba(0,230,255,.18), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(140,90,255,.15), transparent 45%);
+    radial-gradient(circle at 80% 70%, rgba(255,180,100,.14), transparent 45%);
   filter:blur(60px);
 }
 
@@ -51,12 +54,12 @@ nav a:hover{color:var(--teal)}
 /* HERO */
 .hero{
   text-align:center;
-  padding:70px 20px 40px; /* moved up */
+  padding:60px 20px 40px;
 }
 .main-image{
   width:420px;
   max-width:85%;
-  border-radius:18px; /* curved edges */
+  border-radius:18px;
   display:block;
   margin:auto;
   animation:float 4s ease-in-out infinite;
@@ -99,6 +102,26 @@ nav a:hover{color:var(--teal)}
   margin-bottom:28px;
 }
 
+/* GLASS BOX */
+.glass-box{
+  max-width:1000px;
+  margin:0 auto;
+  padding:28px;
+  border-radius:20px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.03)
+  );
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  box-shadow:0 25px 60px rgba(0,0,0,.55);
+  transition:.25s ease;
+}
+.glass-box:hover{
+  transform:translateY(-6px);
+}
+
 /* ITEMS */
 .item-grid{
   display:grid;
@@ -108,20 +131,20 @@ nav a:hover{color:var(--teal)}
   margin:auto;
 }
 .item-card{
-  background:var(--card);
-  border-radius:16px;
+  background:var(--glass);
+  border-radius:18px;
   padding:14px;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s ease;
 }
 .item-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,.6);
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(0,0,0,.6);
 }
 .item-thumb{
   width:100%;
   height:160px;
-  border-radius:12px;
+  border-radius:14px;
   object-fit:cover;
 }
 .item-info h4{margin:10px 0 4px}
@@ -129,34 +152,32 @@ nav a:hover{color:var(--teal)}
 
 /* HOW TO BUY */
 .steps{
-  max-width:900px;
-  margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
 }
 .step{
-  background:var(--card);
-  padding:18px;
+  background:rgba(0,0,0,.25);
   border-radius:14px;
+  padding:16px;
   text-align:left;
+  font-size:14px;
 }
 
 /* PAYMENTS */
 .payments{
   display:flex;
   justify-content:center;
-  gap:20px;
+  gap:16px;
   flex-wrap:wrap;
   font-size:15px;
 }
 
 /* TOS */
 .tos{
-  max-width:900px;
-  margin:auto;
   text-align:left;
   font-size:14px;
+  line-height:1.6;
   opacity:.9;
 }
 
@@ -212,7 +233,7 @@ footer{
     </div>
 
     <div class="item-card" onclick="openDiscord()">
-      <img src="brainrot.png" class="item-thumb">
+      <img src="67SAB.png" class="item-thumb">
       <div class="item-info">
         <h4>67 Brainrot</h4>
         <p>Steal a Brainrot (SAB)</p>
@@ -228,7 +249,7 @@ footer{
     </div>
 
     <div class="item-card" onclick="openDiscord()">
-      <img src="100m.png" class="item-thumb">
+      <img src="100mil.png" class="item-thumb">
       <div class="item-info">
         <h4>100 Million</h4>
         <p>DonutSMP</p>
@@ -239,33 +260,39 @@ footer{
 
 <section class="section">
   <h2 class="section-title">How to Buy from Discord</h2>
-  <div class="steps">
-    <div class="step">1️⃣ Join our Discord server</div>
-    <div class="step">2️⃣ Open a ticket or DM staff</div>
-    <div class="step">3️⃣ Choose item & payment method</div>
-    <div class="step">4️⃣ Receive fast in-game delivery</div>
+  <div class="glass-box">
+    <div class="steps">
+      <div class="step">🍩 Join our Discord server</div>
+      <div class="step">🎫 Open a ticket or DM staff</div>
+      <div class="step">💳 Choose item & payment method</div>
+      <div class="step">⚡ Receive fast in-game delivery</div>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <h2 class="section-title">Payment Methods</h2>
-  <div class="payments">
-    💳 PayPal
-    💎 Crypto
-    🟡 Robux (+30% tax)
-    🎮 Discord Nitro
-    🟢 Google Pay
+  <div class="glass-box">
+    <div class="payments">
+      💳 PayPal
+      💎 Crypto
+      🟡 Robux (+30% tax)
+      🎮 Discord Nitro
+      🟢 Google Pay
+    </div>
   </div>
 </section>
 
 <section class="section">
   <h2 class="section-title">Terms & Conditions</h2>
-  <div class="tos">
-    <p>• Delivery time is usually instant to a few hours depending on availability.</p>
-    <p>• <strong>Crypto payments are NON-REFUNDABLE.</strong></p>
-    <p>• Refunds are only issued if delivery fails due to our mistake or if stock is unavailable.</p>
-    <p>• No refunds after successful delivery.</p>
-    <p>• By purchasing, you agree to our Discord rules and terms.</p>
+  <div class="glass-box">
+    <div class="tos">
+      <p>• Delivery time is usually instant to a few hours depending on availability.</p>
+      <p>• <strong>Crypto payments are NON-REFUNDABLE.</strong></p>
+      <p>• Refunds are issued only if delivery fails due to our mistake or stock issues.</p>
+      <p>• No refunds after successful delivery.</p>
+      <p>• By purchasing, you agree to our Discord rules and terms.</p>
+    </div>
   </div>
 </section>
 
