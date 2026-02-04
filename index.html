@@ -3,657 +3,200 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fast, Safe, Secure - Instant Delivery</title>
+<title>Itemora — DonutSMP & Roblox Store</title>
 <link rel="icon" type="image/png" href="logo.png">
 
-<!-- FONT AWESOME ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- POPPINS FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ---------------- BASE ---------------- */
-:root{ --teal:#00eaff; --bg:#00151a; --panel: rgba(255,255,255,0.03); }
+:root{ --teal:#00eaff; --bg:#00151a; }
 *{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
   background:var(--bg);
   color:#eaf6fb;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-y:overlay;
+  animation:fadeIn .8s ease forwards;
 }
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* FADE IN PAGE */
-body{opacity:0; animation:fadeInPage .9s ease forwards}
-@keyframes fadeInPage {from{opacity:0}to{opacity:1}}
-
-/* ---------------- BACKGROUND FLOAT (animated) ---------------- */
 body::before{
   content:"";
   position:fixed; inset:0;
-  z-index:-2;
-  pointer-events:none;
+  z-index:-1;
   background:
-    radial-gradient(circle at 18% 28%, rgba(0,230,255,0.12), transparent 45%),
-    radial-gradient(circle at 78% 72%, rgba(100,60,255,0.10), transparent 45%),
-    linear-gradient(120deg,#02121F 0%, #001b26 60%, #071227 100%);
-  filter:blur(44px) saturate(110%);
-  transform-origin:center;
-  animation:bgFloat 14s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 30%, rgba(0,230,255,.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(120,70,255,.12), transparent 45%);
+  filter:blur(50px);
 }
-@keyframes bgFloat{
-  0%{transform:scale(1)}
-  100%{transform:scale(1.04)}
-}
-
-/* ---------------- TOP BANNER & HEADER ---------------- */
-.discord-top{
-  background:#07363a;
-  text-align:center;
-  padding:6px 8px;
-  font-size:13px;
-  color:#cfeff4;
-}
-.discord-top a{ color:var(--teal); font-weight:700; text-decoration:none; }
-.discord-top a:hover{ text-decoration:underline; }
 
 /* HEADER */
 header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:16px 40px;
-  position:relative;
-  z-index:10;
+  align-items:center;
+  padding:18px 40px;
 }
-.logo img{ width:120px; cursor:pointer; display:block; }
-
-/* NAV (no glow, underline on hover) */
+.logo img{width:120px}
 nav a{
-  margin:0 12px;
-  color:#e9fbff;
+  margin-left:16px;
   text-decoration:none;
+  color:#eaf6fb;
   font-weight:600;
-  position:relative;
-  transition:all .18s ease;
 }
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0; right:100%;
-  bottom:-6px;
-  height:2px;
-  background:#fff;
-  opacity:0.9;
-  transition:right .22s ease;
-}
-nav a:hover{ color:var(--teal); transform:translateY(-1px) }
-nav a:hover::after{ right:0; }
+nav a:hover{color:var(--teal)}
 
-/* SIGN IN button */
-.btn{
-  background:var(--teal);
-  border:none;
-  padding:9px 20px;
-  border-radius:18px;
-  font-weight:800;
-  cursor:pointer;
-  color:#07121a;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.btn:hover{ transform:scale(1.06) }
-
-/* ---------------- HERO ---------------- */
+/* HERO */
 .hero{
   text-align:center;
-  padding:110px 18px 30px;
-  position:relative;
-  overflow:visible;
+  padding:110px 20px 40px;
 }
-
-/* floating main image (mainimage.png) */
-.main-image {
+.main-image{
   width:420px;
-  max-width:48vw;
+  max-width:80%;
+  margin:auto;
   display:block;
-  margin:0 auto 12px;
-  pointer-events:none;
-  animation:floatMain 4.6s ease-in-out infinite;
-  filter:drop-shadow(0 24px 40px rgba(0,0,0,0.6));
-  border-radius:12px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  animation:float 4s ease-in-out infinite;
 }
-@keyframes floatMain{
-  0%{transform:translateY(0) rotate(-1deg)}
-  50%{transform:translateY(-14px) rotate(1deg)}
-  100%{transform:translateY(0) rotate(-1deg)}
+@keyframes float{
+  50%{transform:translateY(-14px)}
 }
-
-/* hero headline: keep same text but reduce glow */
 .main-title{
   font-size:44px;
   font-weight:900;
   color:var(--teal);
-  margin:10px 0 6px;
-  text-shadow:0 0 6px rgba(0,234,255,0.22);
-  line-height:1.02;
 }
-
-/* typing text area */
-#typing{ display:inline-block; border-right:3px solid #0aefff; padding-right:6px; animation:blinkCursor .8s infinite; }
-@keyframes blinkCursor{0%{border-color:transparent}50%{border-color:#0aefff}100%{border-color:transparent}}
-
-/* hero sublines */
-.tagline{ font-size:15px; color:#cfeff7; margin:6px 0; opacity:0.95; }
-
-/* CTA */
+.store-title{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin:6px 0;
+}
+.tagline{opacity:.9}
 .cta{
   display:inline-block;
+  margin-top:18px;
+  padding:14px 34px;
   background:var(--teal);
-  padding:12px 28px;
-  border-radius:30px;
   color:#07121a;
-  font-weight:800;
+  border-radius:30px;
   text-decoration:none;
-  margin-top:14px;
-  transition:transform .16s ease, box-shadow .16s ease;
-}
-.cta:hover{ transform:translateY(-4px); box-shadow:0 8px 22px rgba(0,234,255,0.12) }
-
-/* ---------------- GAME SELECT INLINE (hidden by default) ---------------- */
-.game-selector {
-  width:88%;
-  max-width:980px;
-  margin:20px auto 32px;
-  background:rgba(255,255,255,0.02);
-  border-radius:14px;
-  padding:18px;
-  border:1px solid rgba(255,255,255,0.04);
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
-  display:flex;
-  gap:14px;
-  align-items:center;
-  justify-content:space-between;
-  transform:translateY(12px) scale(.98);
-  opacity:0;
-  pointer-events:none;
-}
-.game-selector.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; transition:all .35s cubic-bezier(.2,.9,.3,1); }
-
-/* left label and buttons */
-.gs-left{ display:flex; gap:14px; align-items:center; }
-.gs-label{ font-weight:800; color:#dff9ff; font-size:18px; margin-right:6px; }
-
-/* game tile */
-.game-tile{
-  width:240px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
-  padding:10px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.03);
-  display:flex;
-  gap:12px;
-  align-items:center;
-  cursor:pointer;
-  transition:all .18s ease;
-}
-.game-tile img{ width:78px; height:56px; object-fit:cover; border-radius:8px; }
-.game-tile .ginfo{ text-align:left; }
-.game-tile h4{ margin:0; font-size:14px; color:#eaf7fb }
-.game-tile p{ margin:4px 0 0; font-size:12px; color:#bfeef8; opacity:0.9; }
-
-/* tile hover accent */
-.game-tile:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 28px rgba(0,0,0,0.5), inset 0 0 40px rgba(0,234,255,0.02);
+  font-weight:900;
 }
 
-/* right area: search & back */
-.gs-right{ display:flex; gap:12px; align-items:center; }
-.gs-search{
-  display:flex;
-  align-items:center;
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.03);
-  padding:8px 10px;
-  border-radius:12px;
-}
-.gs-search input{
-  background:transparent; border:0; outline:none; color:#eaf7fb;
-  width:180px;
-}
-.back-btn{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:#eaf7fb; padding:8px 12px; border-radius:10px; cursor:pointer; }
-
-/* small helper */
-.kv{ font-size:13px; color:#bfeef8; }
-
-/* ---------------- POPULAR ITEMS (moved slightly down to make space) ---------------- */
-.section{
-  text-align:center;
-  padding:48px 20px 64px;
-}
+/* SECTIONS */
+.section{padding:60px 20px; text-align:center}
 .section-title{
   font-size:30px;
-  margin-bottom:20px;
-  color:#dff9ff;
-  position:relative;
-  display:inline-block;
-  padding:6px 12px;
-  overflow:hidden;
+  margin-bottom:30px;
 }
 
-/* moving white strip for heading (right->left) */
-.section-title::after{
-  content:"";
-  position:absolute;
-  left:100%;
-  top:0;
-  width:120%;
-  height:100%;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-  transform:skewX(-12deg);
-  animation:stripMove 3.2s linear infinite;
-  pointer-events:none;
-}
-@keyframes stripMove{ 0%{left:100%} 100%{left:-120%} }
-
-/* item grid like the example rows */
+/* ITEMS */
 .item-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:18px;
-  max-width:1100px;
-  margin:0 auto;
-  padding-top:12px;
-}
-
-/* item card style similar to BloxMarket look */
-.item-card{
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius:12px;
-  padding:12px;
-  border:1px solid rgba(255,255,255,0.035);
-  transition:transform .12s ease, box-shadow .12s ease;
-  display:flex;
-  flex-direction:column;
-  align-items:stretch;
-}
-.item-card:hover{ transform:translateY(-8px); box-shadow:0 20px 40px rgba(0,0,0,0.6) }
-
-.item-thumb{ width:100%; height:160px; border-radius:8px; background:#0c1a21; object-fit:cover; }
-
-/* card content */
-.item-info{ padding:10px 6px 6px; text-align:center; }
-.item-info h4{ margin:4px 0; font-size:16px; color:#efffff; }
-.item-info p{ margin:6px 0 10px; font-size:13px; color:#bfeef8; opacity:0.9; }
-.price-row{ display:flex; justify-content:center; gap:12px; align-items:center; margin-top:auto; }
-.price{ font-weight:800; color:#ffd; }
-.add-cart{ background:linear-gradient(90deg,#00d88f,#00e1ff); border:0; padding:8px 12px; border-radius:10px; cursor:pointer; color:#07121a; }
-
-/* small cart indicator top-right */
-.top-cart{
-  position:fixed;
-  right:18px;
-  top:24px;
-  z-index:60;
-  background:rgba(255,255,255,0.03);
-  padding:8px 10px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.04);
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.top-cart .icon{ font-size:18px; color:#eaf7fb; }
-.top-cart .badge{
-  width:12px; height:12px; background:#ff4655; border-radius:50%; display:inline-block; box-shadow:0 3px 8px rgba(255,70,90,0.25);
-  transform:scale(0); transition:transform .16s ease;
-}
-.top-cart.active .badge{ transform:scale(1) }
-
-/* ---------------- HOW IT WORKS - replace zoom with shake & subtle effect ---------------- */
-.steps-grid{
-  display:flex;
   gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:8px;
+  max-width:1000px;
+  margin:auto;
 }
-.step-card{
-  width:220px;
-  background:rgba(255,255,255,0.02);
-  padding:16px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.03);
-  text-align:left;
-  transition:transform .14s ease;
+.item-card{
+  background:rgba(255,255,255,.03);
+  border-radius:14px;
+  padding:14px;
+  transition:.2s;
 }
-.step-card:hover{ animation:shake .45s linear both; transform-origin:center; }
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-4px)}
-  50%{transform:translateX(4px)}
-  75%{transform:translateX(-2px)}
-  100%{transform:translateX(0)}
+.item-card:hover{transform:translateY(-6px)}
+.item-thumb{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.item-info h4{margin:10px 0 4px}
+.item-info p{font-size:14px; opacity:.85}
+
+/* FOOTER */
+footer{
+  padding:26px;
+  text-align:center;
+  opacity:.7;
 }
 
-/* ---------------- FAQ / disclaimer / footer ---------------- */
-.faq-container{ max-width:860px; margin:22px auto; display:flex; flex-direction:column; gap:18px; padding-top:6px; }
-.faq-box{ background:rgba(255,255,255,0.02); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:#dff9ff; }
-.disclaimer{ max-width:900px; margin:20px auto; padding:16px; color:#cfeff4; background:rgba(255,255,255,0.01); border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
-
-/* responsive tweaks */
-@media(max-width:820px){
-  .main-image{ width:78vw }
-  .game-selector{flex-direction:column; gap:10px; padding:12px}
-  .gs-right{ width:100%; justify-content:space-between }
-  .item-grid{ grid-template-columns:repeat(2,1fr) }
+@media(max-width:600px){
+  .main-title{font-size:30px}
 }
-@media(max-width:480px){
-  .main-title{ font-size:28px }
-  .item-grid{ grid-template-columns:1fr }
-}
-
-/* small utilities */
-.hide{ display:none !important; }
-.center{ text-align:center }
-
-/* end styles */
 </style>
 </head>
+
 <body>
 
-<!-- TOP BANNER -->
-<div class="discord-top">
-  <a href="https://discord.gg/Mz2Jtd5eTd" target="_blank">Join our Discord Server</a>
-  <div style="font-size:12px; opacity:.9">Giveaways everyday 🎉</div>
-</div>
-
-<!-- HEADER -->
 <header>
-  <div class="logo" onclick="location.href='index.html'">
-    <img src="logo.png" alt="Itemora logo">
+  <div class="logo">
+    <img src="logo.png" alt="Itemora">
   </div>
-
   <nav>
     <a href="#home">Home</a>
     <a href="#shop">Shop</a>
     <a href="#contact">Contact</a>
-    <button id="authBtn" class="btn">Loading...</button>
   </nav>
 </header>
 
-<!-- top-right cart -->
-<div class="top-cart" id="topCart" title="View cart">
-  <i class="fa-solid fa-cart-shopping icon"></i>
-  <span class="badge" id="cartBadge"></span>
-</div>
-
-<!-- HERO -->
 <section id="home" class="hero">
-  <!-- animated main image -->
-  <img src="mainimage.png" alt="Main visual" class="main-image" id="mainImage">
+  <img src="mainimage.png" class="main-image" alt="Itemora">
+  <h1 class="main-title">Itemora</h1>
+  <div class="store-title">DonutSMP & Roblox Store</div>
+  <p class="tagline">Purchase items directly from our Discord</p>
 
-  <h1 class="main-title">
-    <span id="typing"></span>
-  </h1>
-
-  <p class="tagline">All Your Favourite Games Available</p>
-  <p class="tagline">Fast delivery. Secure checkout.</p>
-
-  <!-- Explore triggers inline selector (no separate page) -->
-  <a href="javascript:;" class="cta" id="openGameSelector">Explore Games</a>
+  <a class="cta" target="_blank" href="https://discord.gg/DfQsTWWBB5">
+    Join Discord to Purchase
+  </a>
 </section>
 
-<!-- INLINE GAME SELECTOR (appears under hero) -->
-<div class="game-selector" id="gameSelector" aria-hidden="true">
-  <div class="gs-left">
-    <div class="gs-label">Choose Your Game</div>
-
-    <!-- grow a garden tile -->
-    <div class="game-tile" data-game="growagarden" tabindex="0" role="button">
-      <img src="gag.png" alt="Grow a Garden">
-      <div class="ginfo">
-        <h4>Grow a Garden</h4>
-        <p>Buy seeds, pets & boosts</p>
-      </div>
-    </div>
-
-    <!-- steal a brainrot tile -->
-    <div class="game-tile" data-game="stealabrainrot" tabindex="0" role="button">
-      <img src="sab.png" alt="Steal a Brainrot">
-      <div class="ginfo">
-        <h4>Steal a Brainrot</h4>
-        <p>Rare pets & currency</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gs-right">
-    <div class="gs-search">
-      <i class="fa-solid fa-magnifying-glass" style="margin-right:8px; color:#cfeff4"></i>
-      <input id="gameSearch" placeholder="Search games..." aria-label="Search games">
-    </div>
-    <button class="back-btn" id="closeSelector">Close</button>
-  </div>
-</div>
-
-<!-- POPULAR ITEMS -->
 <section id="shop" class="section">
   <h2 class="section-title">Popular Items</h2>
 
-  <div class="item-grid" id="itemsGrid">
-    <!-- Example card: DragonFly for Grow a Garden -->
-    <div class="item-card" data-name="DragonFly">
-      <img src="df.png" class="item-thumb" alt="DragonFly">
+  <div class="item-grid">
+    <div class="item-card">
+      <img src="raccoon.png" class="item-thumb">
       <div class="item-info">
-        <h4>DragonFly</h4>
-        <p>Grow a Garden — Pet</p>
-        <div class="price-row">
-          <div class="price"><small style="opacity:.7;text-decoration:line-through;margin-right:6px">$4.99</small><span style="color:#7ef7a1">$1.49</span></div>
-          <button class="add-cart" data-item="DragonFly">Add to cart <i class="fa-solid fa-cart-plus" style="margin-left:8px"></i></button>
-        </div>
+        <h4>Raccoon</h4>
+        <p>Grow a Garden (GAG)</p>
       </div>
     </div>
 
-    <!-- placeholder sample items -->
-    <div class="item-card" data-name="Sample Item A">
-      <img src="tralalero.png" class="item-thumb" alt="Sample">
+    <div class="item-card">
+      <img src="brainrot.png" class="item-thumb">
       <div class="item-info">
-        <h4>Sample Item A</h4>
-        <p>Preview item text goes here.</p>
-        <div class="price-row">
-          <div class="price">$0.99</div>
-          <button class="add-cart" data-item="Sample Item A">Add to cart</button>
-        </div>
+        <h4>67 Brainrot</h4>
+        <p>Steal a Brainrot (SAB)</p>
       </div>
     </div>
 
-    <div class="item-card" data-name="Sample Item B">
-      <img src="tralalero.png" class="item-thumb" alt="Sample">
+    <div class="item-card">
+      <img src="skellys.png" class="item-thumb">
       <div class="item-info">
-        <h4>Sample Item B</h4>
-        <p>Preview item description.</p>
-        <div class="price-row">
-          <div class="price">$1.29</div>
-          <button class="add-cart" data-item="Sample Item B">Add to cart</button>
-        </div>
+        <h4>Skellys</h4>
+        <p>DonutSMP</p>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="100m.png" class="item-thumb">
+      <div class="item-info">
+        <h4>100 Million</h4>
+        <p>DonutSMP</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="section">
-  <h2 class="section-title">How Itemora Works</h2>
-
-  <div class="steps-grid" id="stepsGrid">
-    <div class="step-card"><h3><i class="fa-solid fa-gamepad"></i> Select Items</h3><p>Choose the items you want from your favourite games.</p></div>
-    <div class="step-card"><h3><i class="fa-solid fa-bolt"></i> Fast Delivery</h3><p>We process orders quickly for a smooth experience.</p></div>
-    <div class="step-card"><h3><i class="fa-solid fa-lock"></i> Secure Checkout</h3><p>Your payment and data stay fully protected.</p></div>
-    <div class="step-card"><h3><i class="fa-solid fa-headset"></i> Support</h3><p>Our Discord team is always available to help you.</p></div>
-  </div>
-</section>
-
-<!-- FAQ / Disclaimer -->
-<section id="faq" class="section">
-  <h2 class="section-title">Frequently Asked Questions</h2>
-
-  <div class="faq-container">
-    <div class="faq-box">
-      <h3><i class="fa-solid fa-shield"></i> Is Itemora a trusted platform?</h3>
-      <p>Yes — Itemora is designed to offer a safe and smooth digital shopping experience. All payments go through secure third-party processors, and no sensitive data is stored on our servers.</p>
-    </div>
-
-    <div class="faq-box">
-      <h3><i class="fa-solid fa-rotate-left"></i> Refund policy</h3>
-      <p>Refunds are not possible once an item has been delivered. <strong>Crypto payments are non-refundable.</strong> If you face a problem, contact support and we'll investigate.</p>
-    </div>
-
-    <div class="faq-box">
-      <h3><i class="fa-solid fa-circle-question"></i> Are you affiliated with game devs?</h3>
-      <p>No — Itemora is independent and not endorsed by Roblox, Big Games, Uplift Games, or others. All trademarks belong to their owners.</p>
-    </div>
-  </div>
-
-  <div class="disclaimer">
-    <strong>Disclaimer:</strong> Itemora is an independent digital marketplace. We are not affiliated, partnered, or endorsed by Roblox Corporation, Big Games, Uplift Games, or any other game developers. All in-game items and names belong to their respective creators.
-  </div>
-</section>
-
-<!-- Contact & Footer -->
 <section id="contact" class="section">
   <h2 class="section-title">Contact</h2>
-  <p class="center">Email: rbxrush9@gmail.com</p>
+  <p>Email: rbxrush9@gmail.com</p>
 </section>
 
-<footer style="padding:28px; text-align:center; color:#8bccde">© 2025 Itemora</footer>
-
-<!-- ---------------- FIREBASE LOGIN (UNCHANGED) ---------------- -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDBqCRDt-sjiCUmYpxk9lTHKxR0DM2fKQo",
-  authDomain: "itemora-a0a21.firebaseapp.com",
-  projectId: "itemora-a0a21",
-  storageBucket: "itemora-a0a21.firebasestorage.app",
-  messagingSenderId: "25090028733",
-  appId: "1:25090028733:web:2acf74043aae85b3bbf3d4",
-  measurementId: "G-HCHGBL8CPN"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const btn = document.getElementById("authBtn");
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    btn.textContent = "Logout";
-    btn.onclick = () => {
-      if(confirm("Log out from Itemora?")) signOut(auth);
-    };
-  } else {
-    btn.textContent = "Sign In";
-    btn.onclick = () => location.href="login.html";
-  }
-});
-</script>
-
-<!-- ---------------- APP SCRIPTS ---------------- -->
-<script>
-/* Typing animation (fixed logic) */
-const textArray = [
-  "🌟 Buy Your Favorite Items Here!",
-  "Fast & Secure Item Checkout",
-  "Safe Delivery. No Hassle."
-];
-let tIndex = 0, cIndex = 0, deleting = false;
-const typingEl = document.getElementById('typing');
-
-function tick(){
-  const txt = textArray[tIndex];
-  if(!deleting){
-    cIndex++;
-    typingEl.textContent = txt.slice(0,cIndex);
-    if(cIndex >= txt.length){ deleting = true; setTimeout(tick, 1400); return; }
-  } else {
-    cIndex--;
-    typingEl.textContent = txt.slice(0,cIndex);
-    if(cIndex <= 0){ deleting = false; tIndex = (tIndex+1) % textArray.length; }
-  }
-  setTimeout(tick, deleting ? 45 : 60);
-}
-document.addEventListener('DOMContentLoaded', ()=> setTimeout(tick, 500));
-
-/* GAME SELECTOR UI */
-const openBtn = document.getElementById('openGameSelector');
-const gs = document.getElementById('gameSelector');
-const closeBtn = document.getElementById('closeSelector');
-const searchInput = document.getElementById('gameSearch');
-const tiles = Array.from(document.querySelectorAll('.game-tile'));
-
-// open/close
-openBtn.addEventListener('click', ()=>{ gs.classList.add('show'); gs.setAttribute('aria-hidden','false'); gs.scrollIntoView({behavior:'smooth', block:'center'}); });
-closeBtn.addEventListener('click', ()=>{ gs.classList.remove('show'); gs.setAttribute('aria-hidden','true'); });
-
-// tile click => navigate to game page
-tiles.forEach(tile => {
-  tile.addEventListener('click', ()=> {
-    const game = tile.dataset.game;
-    if(game === 'growagarden') location.href = 'growagarden.html';
-    else if(game === 'stealabrainrot') location.href = 'stealabrainrot.html';
-    else location.href = 'explore.html';
-  });
-  tile.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') tile.click(); });
-});
-
-// search filter (simple)
-searchInput.addEventListener('input', ()=> {
-  const q = searchInput.value.trim().toLowerCase();
-  tiles.forEach(t => {
-    const txt = (t.querySelector('h4')?.textContent || '').toLowerCase();
-    t.style.display = txt.includes(q) ? 'flex' : 'none';
-  });
-});
-
-/* CART interactions (client-only)
-   - simple in-memory cart for badge and Add to cart buttons
-*/
-const addBtns = Array.from(document.querySelectorAll('.add-cart'));
-const cartBadge = document.getElementById('cartBadge');
-const topCart = document.getElementById('topCart');
-let cartCount = 0;
-
-function updateCartUI(){
-  cartBadge.style.display = cartCount > 0 ? 'inline-block' : 'none';
-  topCart.classList.toggle('active', cartCount > 0);
-}
-addBtns.forEach(b => {
-  b.addEventListener('click', ()=> {
-    cartCount++;
-    updateCartUI();
-    // a quick feedback
-    b.textContent = 'Added ✓';
-    setTimeout(()=> b.innerHTML = 'Add to cart', 900);
-  });
-});
-updateCartUI();
-
-/* small defensive: if main image missing, hide gracefully */
-const mainImg = document.getElementById('mainImage');
-mainImg.addEventListener('error', ()=> mainImg.classList.add('hide'));
-
-/* keyboard: Escape closes selector */
-document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') { gs.classList.remove('show'); gs.setAttribute('aria-hidden','true'); } });
-
-/* ensure any links requiring new window open normally */
-</script>
+<footer>© 2025 Itemora</footer>
 
 </body>
 </html>
