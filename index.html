@@ -4,31 +4,32 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Itemora — DonutSMP & Roblox Store</title>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" href="logo.png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root{ --teal:#00eaff; --bg:#00151a; }
+:root{
+  --teal:#00eaff;
+  --bg:#001218;
+  --card:rgba(255,255,255,.04);
+}
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
   background:var(--bg);
   color:#eaf6fb;
-  animation:fadeIn .8s ease forwards;
 }
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
 body::before{
   content:"";
   position:fixed; inset:0;
   z-index:-1;
   background:
-    radial-gradient(circle at 20% 30%, rgba(0,230,255,.12), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(120,70,255,.12), transparent 45%);
-  filter:blur(50px);
+    radial-gradient(circle at 20% 25%, rgba(0,230,255,.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(140,90,255,.15), transparent 45%);
+  filter:blur(60px);
 }
 
 /* HEADER */
@@ -36,13 +37,13 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 40px;
+  padding:14px 36px;
 }
-.logo img{width:120px}
+.logo img{width:115px}
 nav a{
-  margin-left:16px;
-  text-decoration:none;
+  margin-left:18px;
   color:#eaf6fb;
+  text-decoration:none;
   font-weight:600;
 }
 nav a:hover{color:var(--teal)}
@@ -50,81 +51,126 @@ nav a:hover{color:var(--teal)}
 /* HERO */
 .hero{
   text-align:center;
-  padding:110px 20px 40px;
+  padding:70px 20px 40px; /* moved up */
 }
 .main-image{
   width:420px;
-  max-width:80%;
-  margin:auto;
+  max-width:85%;
+  border-radius:18px; /* curved edges */
   display:block;
+  margin:auto;
   animation:float 4s ease-in-out infinite;
+  box-shadow:0 25px 60px rgba(0,0,0,.55);
 }
-@keyframes float{
-  50%{transform:translateY(-14px)}
-}
+@keyframes float{50%{transform:translateY(-12px)}}
+
 .main-title{
   font-size:44px;
   font-weight:900;
   color:var(--teal);
+  margin-top:18px;
 }
 .store-title{
   font-size:22px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin:6px 0;
+  font-weight:800;
+  margin:4px 0;
 }
 .tagline{opacity:.9}
+
 .cta{
   display:inline-block;
   margin-top:18px;
-  padding:14px 34px;
+  padding:14px 36px;
   background:var(--teal);
-  color:#07121a;
+  color:#041319;
   border-radius:30px;
   text-decoration:none;
   font-weight:900;
 }
+.cta:hover{transform:translateY(-3px)}
 
 /* SECTIONS */
-.section{padding:60px 20px; text-align:center}
+.section{
+  padding:60px 20px;
+  text-align:center;
+}
 .section-title{
   font-size:30px;
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 /* ITEMS */
 .item-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:20px;
+  gap:22px;
   max-width:1000px;
   margin:auto;
 }
 .item-card{
-  background:rgba(255,255,255,.03);
-  border-radius:14px;
+  background:var(--card);
+  border-radius:16px;
   padding:14px;
+  cursor:pointer;
   transition:.2s;
 }
-.item-card:hover{transform:translateY(-6px)}
+.item-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.6);
+}
 .item-thumb{
   width:100%;
   height:160px;
+  border-radius:12px;
   object-fit:cover;
-  border-radius:10px;
 }
 .item-info h4{margin:10px 0 4px}
-.item-info p{font-size:14px; opacity:.85}
+.item-info p{opacity:.85}
+
+/* HOW TO BUY */
+.steps{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.step{
+  background:var(--card);
+  padding:18px;
+  border-radius:14px;
+  text-align:left;
+}
+
+/* PAYMENTS */
+.payments{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:15px;
+}
+
+/* TOS */
+.tos{
+  max-width:900px;
+  margin:auto;
+  text-align:left;
+  font-size:14px;
+  opacity:.9;
+}
 
 /* FOOTER */
 footer{
-  padding:26px;
+  padding:28px;
   text-align:center;
   opacity:.7;
 }
 
+/* MOBILE */
 @media(max-width:600px){
   .main-title{font-size:30px}
+  header{padding:12px 18px}
 }
 </style>
 </head>
@@ -148,7 +194,7 @@ footer{
   <div class="store-title">DonutSMP & Roblox Store</div>
   <p class="tagline">Purchase items directly from our Discord</p>
 
-  <a class="cta" target="_blank" href="https://discord.gg/DfQsTWWBB5">
+  <a class="cta" href="https://discord.gg/DfQsTWWBB5" target="_blank">
     Join Discord to Purchase
   </a>
 </section>
@@ -157,7 +203,7 @@ footer{
   <h2 class="section-title">Popular Items</h2>
 
   <div class="item-grid">
-    <div class="item-card">
+    <div class="item-card" onclick="openDiscord()">
       <img src="raccoon.png" class="item-thumb">
       <div class="item-info">
         <h4>Raccoon</h4>
@@ -165,7 +211,7 @@ footer{
       </div>
     </div>
 
-    <div class="item-card">
+    <div class="item-card" onclick="openDiscord()">
       <img src="brainrot.png" class="item-thumb">
       <div class="item-info">
         <h4>67 Brainrot</h4>
@@ -173,7 +219,7 @@ footer{
       </div>
     </div>
 
-    <div class="item-card">
+    <div class="item-card" onclick="openDiscord()">
       <img src="skellys.png" class="item-thumb">
       <div class="item-info">
         <h4>Skellys</h4>
@@ -181,7 +227,7 @@ footer{
       </div>
     </div>
 
-    <div class="item-card">
+    <div class="item-card" onclick="openDiscord()">
       <img src="100m.png" class="item-thumb">
       <div class="item-info">
         <h4>100 Million</h4>
@@ -191,12 +237,50 @@ footer{
   </div>
 </section>
 
+<section class="section">
+  <h2 class="section-title">How to Buy from Discord</h2>
+  <div class="steps">
+    <div class="step">1️⃣ Join our Discord server</div>
+    <div class="step">2️⃣ Open a ticket or DM staff</div>
+    <div class="step">3️⃣ Choose item & payment method</div>
+    <div class="step">4️⃣ Receive fast in-game delivery</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Payment Methods</h2>
+  <div class="payments">
+    💳 PayPal
+    💎 Crypto
+    🟡 Robux (+30% tax)
+    🎮 Discord Nitro
+    🟢 Google Pay
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Terms & Conditions</h2>
+  <div class="tos">
+    <p>• Delivery time is usually instant to a few hours depending on availability.</p>
+    <p>• <strong>Crypto payments are NON-REFUNDABLE.</strong></p>
+    <p>• Refunds are only issued if delivery fails due to our mistake or if stock is unavailable.</p>
+    <p>• No refunds after successful delivery.</p>
+    <p>• By purchasing, you agree to our Discord rules and terms.</p>
+  </div>
+</section>
+
 <section id="contact" class="section">
   <h2 class="section-title">Contact</h2>
   <p>Email: rbxrush9@gmail.com</p>
 </section>
 
-<footer>© 2025 Itemora</footer>
+<footer>© 2026 Itemora</footer>
+
+<script>
+function openDiscord(){
+  window.open("https://discord.gg/DfQsTWWBB5","_blank");
+}
+</script>
 
 </body>
 </html>
